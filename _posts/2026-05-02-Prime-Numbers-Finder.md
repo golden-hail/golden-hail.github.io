@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Finding Prime Numbers with Python
-image: "/posts/prime_nums.jpeg"
+title: Prime Numbers Finder with Python
+image: "/posts/prime_nums.jpg"
 tags: [Python, Primes]
 ---
 
@@ -12,5 +12,16 @@ For reference, a prime number is an integer that can only be divided wholly by i
 >>> {2, 3, 5, 7}
 ```
 
+--- 
+
+First, let's set our input value "n", the number in which we want to find all prime numbers under
+
+```python
+n = 20
+```
 
 
+The lowest prime number to exist is 2. Because of this, we want our initial list of possible prime numbers, "number_range", to be a list of numbers starting from 3 and ending at specified input "n"
+```Python
+number_range = set(range(2, n+1))
+```
