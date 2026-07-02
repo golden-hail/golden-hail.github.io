@@ -1,0 +1,16 @@
+---
+layout: post
+title: Finding Prime Numbers with Python
+image: "/posts/primes_image.jpeg"
+tags: [Python, Primes]
+---
+
+Hello! For my first post, I'll be walking through a Python function I wrote that returns a list of all prime numbers that are below a specified input number. For example, if we passed in a value n=10, this function would return a list of all prime numbers below the specified number 10!
+
+For reference, a prime number is an integer that can only be divided wholly by itself and 1. In our example of n=10, we would expect an output as follows:
+```python
+>>> {1, 2, 3, 5, 7}
+```
+
+
+
