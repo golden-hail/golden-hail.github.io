@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Assessing Campaign Performance Using Chi-Square Test For Independence
-image: "/posts/ab-testing.jpg"
+image: "/posts/AB_testing.jpg"
 tags: [AB Testing, Hypothesis Testing, Chi-Square, Python]
 ---
 
@@ -36,7 +36,6 @@ The third group was a control group. They did not receive any mailer.
 
 The client knows that customers who were contacted, signed up for the Delivery Club at a far higher rate than the control group, but are now curious as to if there is a significant difference in customer signup rate between the cheap mailer and the expensive mailer.  This will allow them to make more informed decisions in the future, such as whether it is worth it to spend the money on fancier mailers or not.
 
-<br>
 <br>
 
 ### Actions <a name="overview-actions"></a>
@@ -73,10 +72,12 @@ Measuring the response of each group provides us with information that can help 
 
 A Hypothesis Test is 
 
+When performing a hypothesis test, the following must be defined:
+
 <br>
 **The Null Hypothesis**
 
-
+The null hypothesis is a statistical assumption stating that there is no real relationship, effect, or difference between variables in a population
 
 <br>
 **The Alternate Hypothesis**
@@ -102,11 +103,60 @@ ___
 <br>
 # Data Overview & Preparation  <a name="data-overview"></a>
 
+Our table of interest in the grocery client database is the *campaign_data* table. 
+This table contains each each unique customer_id, the type of mailer they received, if any, and whether or not the customer signed up for the Delivery Club membership.
+
+To determine whether the fancier Mailer 2 lead to a significant difference of people to sign up as opposed to the cheaper Mailer 1, we will first need to exclude the control group from the data by extracting the customers who got either mailer.
+
+
+<br>
+```python
+
+# import the required python libraries
+import pandas as pd
+from scipy.stats import chi2_contingency, chi2
+
+# import campaign data
+campaign_data = pd.read_excel(...)
+
+# filter out the control group
+campaign_data = campaign_data.loc[campaign_data["mailer_type"] != "Control"]
+
+```
+<br>
+Below is a 10 row sample of the imported campaign_data DataFrame:
+<br>
+<br>
+
+| **customer_id** | **campaign_name** | **mailer_type** | **signup_flag** |
+|---|---|---|---|
+| 74 | delivery_club | Mailer1 | 1 |
+| 524 | delivery_club | Mailer1 | 1 |
+| 607 | delivery_club | Mailer2 | 1 |
+| 343 | delivery_club | Mailer1 | 0 |
+| 322 | delivery_club | Mailer2 | 1 |
+| 115 | delivery_club | Mailer2 | 0 |
+| 1 | delivery_club | Mailer2 | 1 |
+| 120 | delivery_club | Mailer1 | 1 |
+| 52 | delivery_club | Mailer1 | 1 |
+| 405 | delivery_club | Mailer1 | 0 |
+| 435 | delivery_club | Mailer2 | 0 |
+
+<br>
+
+In the campaign_data DataFrame we have:
+
+* customer_id
+* campaign name
+* mailer_type (either Mailer1 or Mailer2)
+* signup_flag (either 1 or 0)
 
 ___
 
 <br>
 # Applying Chi-Square Test For Independence <a name="chi-square-application"></a>
+
+
 
 <br>
 #### State Hypotheses & Acceptance Criteria For Test
