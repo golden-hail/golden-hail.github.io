@@ -63,8 +63,8 @@ multiples = set(range(prime*2, n+1, prime))
 
 The range was determined as follows: range(start, stop, step) 
 
-For the START in our range, we can start with prime*2, which will be the first multiple of the prime number.
-For the STOP in our range, we want to stop at the index of our number n=20, which is the value of n+1.
+For the START in our range, we can start with prime*2, which will be the first multiple of the prime number.  
+For the STOP in our range, we want to stop at the index of our number n=20, which is the value of n+1.  
 For the STEP in our range, we want multiples of our prime, so we want to increment in steps of this popped out prime number so we can put in our **prime** list.
 
 Now we can see that this range worked in our output as we have all multiples of 2 up to our n value of 20!
@@ -159,7 +159,7 @@ primes_finder(1000000)
 
 And there we have it! Feel free to copy the function and try it for yourself! :)
 
-####NOTE ON POP():
+**A NOTE ON POP():**
 
 In this script, we demonstrated the **pop** functionality, however, using pop() on a set could be risky in some instances. 
 
@@ -172,4 +172,4 @@ prime = min(sorted(number_range))
 number_range.remove(prime)
 ```
 
-This definition of prime ascertains that we are always pulling the lowest value out of our number_range. This method, however, is slower as we are sorting the number_range set each time we define **prime**.
+This new definition of prime ascertains that we are always pulling the lowest value out of our number_range. This method, however, is slower as we are sorting the number_range set each time we define **prime**.
