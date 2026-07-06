@@ -57,7 +57,6 @@ Note: The *Z-Test For Proportions* is another viable test to run for measuring r
 ___
 
 # Concept Overview  <a name="concept-overview"></a>
-
 <br>
 #### A/B Testing
 
@@ -70,23 +69,25 @@ Measuring the response of each group provides us with information that can help 
 <br>
 #### Hypothesis Testing
 
-A Hypothesis Test is 
+!!!!A Hypothesis Test is ...
+reject or accept our null hypothesis...
 
 When performing a hypothesis test, the following must be defined:
 
 <br>
 **The Null Hypothesis**
 
-The null hypothesis is a statistical assumption stating that there is no real relationship, effect, or difference between variables in a population
+The Null Hypothesis is a statistical assumption stating that there is no real relationship, association, or difference between two outcomes or groups. We run a hypothesis test to either reject or accept the Null Hypothesis.
 
 <br>
 **The Alternate Hypothesis**
 
-
+The Alternate Hypothesis is what we are testing our Null Hypothesis against. It asserts that there is a measurable relationship, effect, or difference between variables, directly contradicting the Null Hypothesis.
 
 <br>
 **The Acceptance Criteria**
 
+This acceptance criteria is also our p-value threshold. We can 
 
 
 <br>
@@ -108,10 +109,8 @@ This table contains each each unique customer_id, the type of mailer they receiv
 
 To determine whether the fancier Mailer 2 lead to a significant difference of people to sign up as opposed to the cheaper Mailer 1, we will first need to exclude the control group from the data by extracting the customers who got either mailer.
 
-
 <br>
 ```python
-
 # import the required python libraries
 import pandas as pd
 from scipy.stats import chi2_contingency, chi2
@@ -121,11 +120,9 @@ campaign_data = pd.read_excel(...)
 
 # filter out the control group
 campaign_data = campaign_data.loc[campaign_data["mailer_type"] != "Control"]
-
 ```
 <br>
-Below is a 10 row sample of the imported campaign_data DataFrame:
-<br>
+Below is a 10 row sample of the imported **campaign_data** DataFrame:
 <br>
 
 | **customer_id** | **campaign_name** | **mailer_type** | **signup_flag** |
@@ -144,7 +141,7 @@ Below is a 10 row sample of the imported campaign_data DataFrame:
 
 <br>
 
-In the campaign_data DataFrame we have:
+In the **campaign_data** DataFrame we have the following columns:
 
 * customer_id
 * campaign name
@@ -162,12 +159,8 @@ ___
 #### State Hypotheses & Acceptance Criteria For Test
 
 
-
-```
-
 <br>
 #### Calculate Observed Frequencies & Expected Frequencies
-
 
 
 ___
@@ -190,7 +183,7 @@ ___
 
 <br>
 # Discussion <a name="discussion"></a>
-```
+
 Because there is no significant difference between the signup rate of Mailer recipients, we could recommend that for the next promotion, the grocery store only send the cheap version of the mailers to customers. This can save the business money overall.
 
 If we did however, determine that Mailer 2 led to significantly more customers signing up, then we may consider going forward with only sending out Mailer 2 to keep us ahead of the competition by appealing to newer folks.
