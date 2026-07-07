@@ -29,15 +29,12 @@ ___
 
 In late June, our client, a grocery retailer, ran a campaign to promote their new "Delivery Club" membership. Signing up for the club costs $100 and gives customers free grocery deliveries for one year, starting June 1st.
 
-For the campaign promoting the club, customers were put randomly into three groups:  
+For the campaign promoting the club, customers were put randomly into three groups: 
 * The first group received a cheap, low quality mailer, Mailer 1.
 * The second group received a colorful, high quality, high cost mailer, Mailer 2. 
 * The third group was a control group. They did not receive any mailer.
 
 The client knows that customers who were contacted, signed up for the Delivery Club at a far higher rate than the control group, but are now curious as to if there is a significant difference in customer signup rate between the cheap mailer and the expensive mailer. This will allow them to make more informed decisions in the future, such as whether it is worth it to spend the money on fancier mailers or not.
-
-<br>
-<br>
 
 ### Actions <a name="overview-actions"></a>
 
@@ -59,38 +56,39 @@ ___
 
 # Concept Overview  <a name="concept-overview"></a>
 <br>
-#### A/B Testing
+### A/B Testing
 
-An A/B test takes two randomized groups, A and B, and provides them with different experiences. Both groups get their own version of an experience. 
+An A/B test takes two randomized groups, A and B, and provides them with different experiences. In the A/B test, we measure the response of each group to understand the impact each experience had on the response. These insights can help drive business decisions in the future.
 
-For example, a company may post 2 different pictures advertising the same product. With an A/B test, we could look to measure whether either ad picture significantly impacted the amount of user clicks.  
-
-Measuring the response of each group provides us with information that can help drive future business decisions. 
+For example, a company may post 2 different pictures advertising the same product on their website. With an A/B test, we could look to measure if the picture used in the ad significantly impacted the amount of users who clicked on the ad. If one ad yielded significantly more clicks, the business can use this data when thinking about what characteristics got the user to click and incorporate those features into future ads.
 
 <br>
-#### Hypothesis Testing
+### Hypothesis Testing
 
-!!!!A Hypothesis Test is a statistical method used to evaluate the liklihood of a claim or assumption about a population parameter based on sample data.
-reject or accept our null hypothesis...
+A Hypothesis Test is a statistical method used to evaluate the likelihood of an assumption on a population, using sample data. It determines whether an observed pattern or correlation in the data is due to a true relationship or due to random chance.
 
-When performing a hypothesis test, the following must always be defined:
+There are multiple types of Hypothesis Tests as well as many scenarios we can run them on. 
+
+When performing any Hypothesis Test, the following must always be defined:
 
 <br>
 **The Null Hypothesis**
 
-The Null Hypothesis is a statistical assumption stating that there is no real relationship, association, or difference between two outcomes or groups. We run a hypothesis test to either reject or accept this Null Hypothesis.
+The Null Hypothesis is a statistical assumption stating that there is no statistically significant relationship, association, or difference between two outcomes or groups. We run a Hypothesis Test to either reject or accept this Null Hypothesis.
 
 <br>
 **The Alternate Hypothesis**
 
-The Alternate Hypothesis is essentially the opposite of the Null Hypothesis; it asserts that there is a measurable relationship, effect, or difference between variables, directly contradicting the Null Hypothesis.
+The Alternate Hypothesis suggests that there is a measurable relationship, effect, or difference between variables, directly contradicting the Null Hypothesis. When rejecting the Null Hypothesis, we are accepting the Alternate Hypothesis.
 
-!!! Result not by chance 
+!!! Confident result is not by chance? 
 
 <br>
 **The Acceptance Criteria**
 
-This acceptance criteria is also our p-value threshold.
+The acceptance criteria is the specified p-value defined at the is also our p-value threshold. Or rejection criteria?? 
+
+a p-value is
 
 <br>
 **Types Of Hypothesis Test**
@@ -102,19 +100,14 @@ There are many types of hypothesis tests.
 
 The **Chi-Square Test For Independence** is a hypothesis test used to determine whether a significant association exists between two categorical variables. It compares the *observed frequencies* from the actual data points collected from a sample against the *expected frequencies*, the rates expected to be seen if the two variables were truly independent.
 
-The *Null Hypothesis* described above is our baseline assumption. It states that there is no relationship between the two variables, meaning the observed frequencies will perfectly match the expected frequencies.
+The *Null Hypothesis* described above is our baseline assumption. It assumes that there is no relationship or difference between the two variables. It asserts that the observed frequencies will match the expected frequencies, with any correlation or minor difference is the result of random chance.
 
-
-!!!! mention small differences due to random chance we account for
+The *Alternate Hypothesis* 
 
 ----
 
 
 The *assumption* is the Null Hypothesis, which as discussed above is always the viewpoint that the two groups will be equal.  With the Chi-Square Test For Independence we look to calculate a statistic which, based on the specified Acceptance Criteria will mean we either reject or support this initial assumption.
-
-The *observed frequencies* are the true values that we’ve seen.
-
-The *expected frequencies* are essentially what we would *expect* to see based on all of the data.
 
 **Note:** Another option when comparing "rates" is a test known as the *Z-Test For Proportions*.  While, we could absolutely use this test here, we have chosen the Chi-Square Test For Independence because:
 
@@ -194,7 +187,7 @@ acceptance_criteria = 0.05
 
 As detailed in the *Concept Overview* section above, our **observed frequencies** come directly from the rates per group in our collected data. In this case, our observed frequencies come directly from our campaign_data imported above.
 
-!!!! For our *expected frequencies*, we will be calculating 
+!!!! For our *expected frequencies*, we will be calculating infered population parameters
 
 !!!! Explain it.. maybe insert picture. Categorical variables Mailer1 and Mailer2. (See more on these terms in the)
 
