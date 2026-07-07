@@ -171,7 +171,6 @@ alternate_hypothesis = "There is a relationship between mailer type and signup r
 acceptance_criteria = 0.05
 ```
 
-<br>
 #### Calculate Observed Frequencies & Expected Frequencies
 
 As detailed in the *Concept Overview* section above, our **observed frequencies** come directly from the rates per group in our collected data. In this case, our observed frequencies come directly from our campaign_data imported above. 
@@ -194,7 +193,7 @@ print(observed_vals)
 >>> Mailer2      209  127
 ```
 
-By running the crosstab method, we see:
+By running the crosstab method, we see:  
 * For customers who received Mailer 1,
     * 252 customers did not sign up for the promotion
     * 123 customers signed up for the promotion. 
@@ -230,14 +229,13 @@ print(critical_value)
 >> 3.84
 ```
 
-!!! (move this section above frequencies since it doesn't take into account chance?) Let's do an elementary check - The signup rate of the observed values from the campaign is below. From the campaign data alone, observed, it does seem as though the fancy higher cost mailer yielded a higher signup rate at ___ %. 
+!!! (move this section above frequencies since it doesn't take into account chance?) Let's do an elementary check - The signup rate of the observed values from the campaign is below. From the campaign data alone, at a first glance, it does seem as though the fancy higher cost mailer yielded a higher signup rate at ___ %. How do we account for this chance? what if they were going to signup anyway? 
 
 ```python
 mailer1_signup_rate = 123 / (252 + 123) * 100
 mailer2_signup_rate = 127 / (209 + 127) * 100
 
 print()
-
 ```
 
 ___
@@ -248,9 +246,6 @@ ___
 
 
 ```python
-
-# print the results (based upon p-value)
-
 
 ```
 <br>
