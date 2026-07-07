@@ -5,7 +5,7 @@ image: "/posts/AB_testing.jpg"
 tags: [AB Testing, Hypothesis Testing, Chi-Square, Python]
 ---
 
-!!!In this project, we'll be running an A/B test on grocery retailer campaign data to determine whether the quality of the promotion mailers sent to customers for a membership had an impact on whether the customer signed up or not.
+In this project, we'll be running an A/B test on grocery retailer campaign data to determine if the quality of promotion mail sent to customers significantly impacted who signed up for a promoted membership. 
 
 We will do this through applying the Chi-Square Test For Independence to measure the significance of the difference in signups between 2 groups.
 
@@ -30,12 +30,13 @@ ___
 In late June, our client, a grocery retailer, ran a campaign to promote their new "Delivery Club" membership. Signing up for the club costs $100 and gives customers free grocery deliveries for one year, starting June 1st.
 
 For the campaign promoting the club, customers were put randomly into three groups:  
-The first group received a cheap, low quality mailer, Mailer 1.
-The second group received a colorful, high quality, high cost mailer, Mailer 2. 
-The third group was a control group. They did not receive any mailer.
+* The first group received a cheap, low quality mailer, Mailer 1.
+* The second group received a colorful, high quality, high cost mailer, Mailer 2. 
+* The third group was a control group. They did not receive any mailer.
 
-The client knows that customers who were contacted, signed up for the Delivery Club at a far higher rate than the control group, but are now curious as to if there is a significant difference in customer signup rate between the cheap mailer and the expensive mailer.  This will allow them to make more informed decisions in the future, such as whether it is worth it to spend the money on fancier mailers or not.
+The client knows that customers who were contacted, signed up for the Delivery Club at a far higher rate than the control group, but are now curious as to if there is a significant difference in customer signup rate between the cheap mailer and the expensive mailer. This will allow them to make more informed decisions in the future, such as whether it is worth it to spend the money on fancier mailers or not.
 
+<br>
 <br>
 
 ### Actions <a name="overview-actions"></a>
@@ -99,6 +100,28 @@ There are many types of hypothesis tests.
 <br>
 #### Chi-Square Test For Independence
 
+The **Chi-Square Test For Independence** is a hypothesis test used to determine whether a significant association exists between two categorical variables. It compares the *observed frequencies* from the actual data points collected from a sample against the *expected frequencies*, the rates expected to be seen if the two variables were truly independent.
+
+The *Null Hypothesis* described above is our baseline assumption. It states that there is no relationship between the two variables, meaning the observed frequencies will perfectly match the expected frequencies.
+
+
+!!!! mention small differences due to random chance we account for
+
+----
+
+
+The *assumption* is the Null Hypothesis, which as discussed above is always the viewpoint that the two groups will be equal.  With the Chi-Square Test For Independence we look to calculate a statistic which, based on the specified Acceptance Criteria will mean we either reject or support this initial assumption.
+
+The *observed frequencies* are the true values that we’ve seen.
+
+The *expected frequencies* are essentially what we would *expect* to see based on all of the data.
+
+**Note:** Another option when comparing "rates" is a test known as the *Z-Test For Proportions*.  While, we could absolutely use this test here, we have chosen the Chi-Square Test For Independence because:
+
+* The resulting test statistic for both tests will be the same
+* The Chi-Square Test can be represented using 2x2 tables of data - meaning it can be easier to explain to stakeholders
+* The Chi-Square Test can extend out to more than 2 groups - meaning the business can have one consistent approach to measuring signficance
+
 ___
 
 <br>
@@ -155,7 +178,7 @@ ___
 <br>
 #### State Hypotheses & Acceptance Criteria For Test
 
-To kick off our Hypothesis Test, we'll need to define our **Null Hypothesis**, our **Alternate Hypothesis**, and our **Acceptance Criteria**. (See more in the *Concept Overview* section above)
+To kick off our Hypothesis Test, we'll need to define our **Null Hypothesis**, our **Alternate Hypothesis**, and our **Acceptance Criteria**. (See more on these terms in the *Concept Overview* section above)
 
 For our Acceptance Criteria, we'll be using the commonly used value of 0.05 (or 5%).
 
@@ -168,6 +191,18 @@ acceptance_criteria = 0.05
 
 <br>
 #### Calculate Observed Frequencies & Expected Frequencies
+
+As detailed in the *Concept Overview* section above, our **observed frequencies** come directly from the rates per group in our collected data. In this case, our observed frequencies come directly from our campaign_data imported above.
+
+!!!! For our *expected frequencies*, we will be calculating 
+
+!!!! Explain it.. maybe insert picture. Categorical variables Mailer1 and Mailer2. (See more on these terms in the)
+
+Now, we'll create our 2x2 matrix needed for the Chi-Square approach, using a method called **crosstab()**. 
+
+Our observed values come directly from our campaign_data imported above. We are analyzing the impact Mailer type had on member sign up rates, so we'll want to pass these values into our method.
+
+Need to pass in an array to Chi-Squares contingincy function, use .values property for observed_values
 
 
 ___
@@ -194,4 +229,6 @@ ___
 Because there is no significant difference between the signup rate of Mailer recipients, we could recommend that for the next promotion, the grocery store only send the cheap version of the mailers to customers. This can save the business money overall.
 
 If we did however, determine that Mailer 2 led to significantly more customers signing up, then we may consider going forward with only sending out Mailer 2 to keep us ahead of the competition by appealing to newer folks.
+
+ROI in campaign by saving money on mailers, if expanding to other stores in a chain or a wider audiance after the pilot 
 
