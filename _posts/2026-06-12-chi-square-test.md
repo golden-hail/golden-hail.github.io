@@ -71,15 +71,13 @@ There are multiple types of Hypothesis Tests as well as many scenarios we can ru
 
 When performing any Hypothesis Test, the following must always be defined:
 
-<br>
-**The Null Hypothesis**
+* **The Null Hypothesis**
 
-The Null Hypothesis is a statistical assumption stating that there is no statistically significant relationship, association, or difference between two outcomes or groups. We run a Hypothesis Test to either reject or accept this Null Hypothesis.
+The Null Hypothesis is a statistical assumption stating that there is no statistically significant relationship, association, or difference between two outcomes or groups. We run a Hypothesis Test to either reject or accept (!!! or fail to reject?) this Null Hypothesis.
 
-<br>
-**The Alternate Hypothesis**
+* **The Alternate Hypothesis**
 
-The Alternate Hypothesis suggests that there is a measurable relationship, effect, or difference between variables, directly contradicting the Null Hypothesis. When rejecting the Null Hypothesis, we are accepting the Alternate Hypothesis.
+The Alternate Hypothesis suggests that there is a significant and measurable relationship, effect, or difference between variables, directly contradicting the Null Hypothesis. When rejecting the Null Hypothesis, we are accepting the Alternate Hypothesis.
 
 !!! Confident result is not by chance? 
 
@@ -167,8 +165,6 @@ ___
 # Applying Chi-Square Test For Independence <a name="chi-square-application"></a>
 
 
-
-<br>
 #### State Hypotheses & Acceptance Criteria For Test
 
 To kick off our Hypothesis Test, we'll need to define our **Null Hypothesis**, our **Alternate Hypothesis**, and our **Acceptance Criteria**. (See more on these terms in the *Concept Overview* section above)
