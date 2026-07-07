@@ -73,46 +73,39 @@ When performing any Hypothesis Test, the following must always be defined:
 
 * **The Null Hypothesis**
 
-The Null Hypothesis is a statistical assumption stating that there is no statistically significant relationship, association, or difference between two outcomes or groups. We run a Hypothesis Test to either reject or accept (!!! or fail to reject?) this Null Hypothesis.
+    The "Null Hypothesis" is a statistical assumption stating that there is no statistically significant relationship, association, or difference between two outcomes or groups. We run a Hypothesis Test to either reject or support this Null Hypothesis.
 
 * **The Alternate Hypothesis**
 
-The Alternate Hypothesis suggests that there is a significant and measurable relationship, effect, or difference between variables, directly contradicting the Null Hypothesis. When rejecting the Null Hypothesis, we are accepting the Alternate Hypothesis.
+    The "Alternate Hypothesis" suggests that there is a significant and measurable relationship, effect, or difference between variables, directly contradicting the Null Hypothesis. When we reject the Null Hypothesis, we accept the Alternate Hypothesis, concluding that the observed relationship is highly unlikely to have occurred by chance alone.
 
-!!! Confident result is not by chance? 
+* **The Acceptance Criteria**
 
-<br>
-**The Acceptance Criteria**
+    To statistically determine whether to reject the null hypothesis in favor of the alternate, an "Acceptance Criteria" must be specified. The acceptance criteria, also known the Significance Level, is a specified p-value threshold in which we are measuring our Null Hypothesis against. In other words, the set threshold draws a line 
 
-The acceptance criteria is the specified p-value defined at the is also our p-value threshold. Or rejection criteria?? 
+    A *p-value*, or probability value, is a value 0-1 that is used to determine if !!! It is a common practice to set the acceptance criteria to 0.05 or 5%.
 
-a p-value is
+    * Low p-value (≤ 0.05): This suggests your results are highly unlikely to have occurred by chance. You have strong evidence to reject the null hypothesis.
+
+    * High p-value (> 0.05): This means your results could easily happen under random variation. You fail to reject the null hypothesis, meaning there isn't enough evidence to prove a true effect exists
 
 <br>
 **Types Of Hypothesis Test**
 
-There are many types of hypothesis tests. 
+There are many types of hypothesis tests. Choosing the right Hypothesis Test depends entirely on the objective is as well as what the data types the variables of interest are. Since we are interested in comparing the sign-up *rates* between two groups, the Chi-Square Test for Independence was chosen for the analysis in this report.
+
+Another viable choice for an approach comparing *rates* would be *Z-Test For Proportions*, which would provide us with the same statistical result as the Chi-Square Test would. 
+
+The Chi-Square Test was chosen for this analysis as it can be represented using a 2x2 data matrix, making the data easier to visualize and explain to stakeholders. Additionally, if the company ever had interest in expanding this campaign to more than two groups, we could easily adapt the Chi-Squared approach to include new group data, providing the business with a consistent way to measure variable significance. 
 
 <br>
 #### Chi-Square Test For Independence
 
-The **Chi-Square Test For Independence** is a hypothesis test used to determine whether a significant association exists between two categorical variables. It compares the *observed frequencies* from the actual data points collected from a sample against the *expected frequencies*, the rates expected to be seen if the two variables were truly independent.
+The **Chi-Square Test For Independence** is a hypothesis test used to determine whether a significant association exists between two categorical variables. It compares the *observed frequencies* from the actual data points collected from a sample against the *expected frequencies*, the data expected to be seen if the two variables were truly independent.
 
-The *Null Hypothesis* described above is our baseline assumption. It assumes that there is no relationship or difference between the two variables. It asserts that the observed frequencies will match the expected frequencies, with any correlation or minor difference is the result of random chance.
+The *Null Hypothesis* described above is our baseline assumption. It assumes that there is no relationship or difference between the two variables. It asserts that the observed frequencies of data will match the expected frequencies, with any correlation or minor difference being the result of random chance.
 
-The *Alternate Hypothesis* 
-
-----
-
-
-The *assumption* is the Null Hypothesis, which as discussed above is always the viewpoint that the two groups will be equal.  With the Chi-Square Test For Independence we look to calculate a statistic which, based on the specified Acceptance Criteria will mean we either reject or support this initial assumption.
-
-**Note:** Another option when comparing "rates" is a test known as the *Z-Test For Proportions*.  While, we could absolutely use this test here, we have chosen the Chi-Square Test For Independence because:
-
-* The resulting test statistic for both tests will be the same
-* The Chi-Square Test can be represented using 2x2 tables of data - meaning it can be easier to explain to stakeholders
-* The Chi-Square Test can extend out to more than 2 groups - meaning the business can have one consistent approach to measuring signficance
-
+!!! TO BE CONTINUED
 ___
 
 <br>
@@ -173,26 +166,79 @@ For our Acceptance Criteria, we'll be using the commonly used value of 0.05 (or 
 
 ```python
 # specify hypotheses & acceptance criteria for test
-null_hypothesis = "There is no relationship between mailer type and signup rate.  They are independent"
-alternate_hypothesis = "There is a relationship between mailer type and signup rate.  They are not independent"
+null_hypothesis = "There is no relationship between mailer type and signup rate. They are independent"
+alternate_hypothesis = "There is a relationship between mailer type and signup rate. They are not independent"
 acceptance_criteria = 0.05
 ```
 
 <br>
 #### Calculate Observed Frequencies & Expected Frequencies
 
-As detailed in the *Concept Overview* section above, our **observed frequencies** come directly from the rates per group in our collected data. In this case, our observed frequencies come directly from our campaign_data imported above.
+As detailed in the *Concept Overview* section above, our **observed frequencies** come directly from the rates per group in our collected data. In this case, our observed frequencies come directly from our campaign_data imported above. 
 
-!!!! For our *expected frequencies*, we will be calculating infered population parameters
-
-!!!! Explain it.. maybe insert picture. Categorical variables Mailer1 and Mailer2. (See more on these terms in the)
+!!!! For our *expected frequencies*, we will be calculating infered population parameters based on all the data combined if the variables being measured were truly independent from one another.
 
 Now, we'll create our 2x2 matrix needed for the Chi-Square approach, using a method called **crosstab()**. 
 
-Our observed values come directly from our campaign_data imported above. We are analyzing the impact Mailer type had on member sign up rates, so we'll want to pass these values into our method.
+Our observed values come directly from our campaign_data imported above. We are analyzing the impact mailer type had on member sign-up rates, so we'll want to pass these values into our method.
 
-Need to pass in an array to Chi-Squares contingincy function, use .values property for observed_values
+?!!! insert picture of chisquare test of independence ??
 
+```python
+observed_vals = pd.crosstab(campaign_data['mailer_type'],campaign_data['signup_flag'])
+
+print(observed_vals)
+>>> signup_flag    0    1
+>>> mailer_type          
+>>> Mailer1      252  123
+>>> Mailer2      209  127
+```
+
+By running the crosstab method, we see:
+* For customers who received Mailer 1,
+    * 252 customers did not sign up for the promotion
+    * 123 customers signed up for the promotion. 
+* For customers who received Mailer 2,
+    * 209 customers did not sign up for the promotion
+    * 127 customers signed up for the promotion   
+
+Since the Chi-Squared contingency function won't accept the observed_vals dataframe in the code above, we'll have to turn this data into an array by using *.values* property for observed_values.
+
+```python
+observed_values = pd.crosstab(campaign_data['mailer_type'],campaign_data['signup_flag']).values
+print(observed_values)
+>>> array([[252, 123],
+       [209, 127]])
+```
+
+Now that the observed_values are of the appropriate type, we can plug this array into our Chi-Squared contingency function:
+
+```python
+# run the chi-square test
+chi2_statistic, p_value, dof, expected_values = chi2_contingency(observed_values, correction = False)
+
+print(chi2_statistic)
+>> 1.94
+
+print(p_value)
+>> 0.16
+
+# find the critical value for our test
+critical_value = chi2.ppf(1 - acceptance_criteria, dof)
+
+print(critical_value)
+>> 3.84
+```
+
+!!! (move this section above frequencies since it doesn't take into account chance?) Let's do an elementary check - The signup rate of the observed values from the campaign is below. From the campaign data alone, observed, it does seem as though the fancy higher cost mailer yielded a higher signup rate at ___ %. 
+
+```python
+mailer1_signup_rate = 123 / (252 + 123) * 100
+mailer2_signup_rate = 127 / (209 + 127) * 100
+
+print()
+
+```
 
 ___
 
