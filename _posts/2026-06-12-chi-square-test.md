@@ -69,26 +69,27 @@ Measuring the response of each group provides us with information that can help 
 <br>
 #### Hypothesis Testing
 
-!!!!A Hypothesis Test is ...
+!!!!A Hypothesis Test is a statistical method used to evaluate the liklihood of a claim or assumption about a population parameter based on sample data.
 reject or accept our null hypothesis...
 
-When performing a hypothesis test, the following must be defined:
+When performing a hypothesis test, the following must always be defined:
 
 <br>
 **The Null Hypothesis**
 
-The Null Hypothesis is a statistical assumption stating that there is no real relationship, association, or difference between two outcomes or groups. We run a hypothesis test to either reject or accept the Null Hypothesis.
+The Null Hypothesis is a statistical assumption stating that there is no real relationship, association, or difference between two outcomes or groups. We run a hypothesis test to either reject or accept this Null Hypothesis.
 
 <br>
 **The Alternate Hypothesis**
 
-The Alternate Hypothesis is what we are testing our Null Hypothesis against. It asserts that there is a measurable relationship, effect, or difference between variables, directly contradicting the Null Hypothesis.
+The Alternate Hypothesis is essentially the opposite of the Null Hypothesis; it asserts that there is a measurable relationship, effect, or difference between variables, directly contradicting the Null Hypothesis.
+
+!!! Result not by chance 
 
 <br>
 **The Acceptance Criteria**
 
-This acceptance criteria is also our p-value threshold. We can 
-
+This acceptance criteria is also our p-value threshold.
 
 <br>
 **Types Of Hypothesis Test**
@@ -97,7 +98,6 @@ There are many types of hypothesis tests.
 
 <br>
 #### Chi-Square Test For Independence
-
 
 ___
 
@@ -109,7 +109,6 @@ This table contains each each unique customer_id, the type of mailer they receiv
 
 To determine whether the fancier Mailer 2 lead to a significant difference of people to sign up as opposed to the cheaper Mailer 1, we will first need to exclude the control group from the data by extracting the customers who got either mailer.
 
-<br>
 ```python
 # import the required python libraries
 import pandas as pd
@@ -139,8 +138,6 @@ Below is a 10 row sample of the imported **campaign_data** DataFrame:
 | 405 | delivery_club | Mailer1 | 0 |
 | 435 | delivery_club | Mailer2 | 0 |
 
-<br>
-
 In the **campaign_data** DataFrame we have the following columns:
 
 * customer_id
@@ -158,6 +155,16 @@ ___
 <br>
 #### State Hypotheses & Acceptance Criteria For Test
 
+To kick off our Hypothesis Test, we'll need to define our **Null Hypothesis**, our **Alternate Hypothesis**, and our **Acceptance Criteria**. (See more in the *Concept Overview* section above)
+
+For our Acceptance Criteria, we'll be using the commonly used value of 0.05 (or 5%).
+
+```python
+# specify hypotheses & acceptance criteria for test
+null_hypothesis = "There is no relationship between mailer type and signup rate.  They are independent"
+alternate_hypothesis = "There is a relationship between mailer type and signup rate.  They are not independent"
+acceptance_criteria = 0.05
+```
 
 <br>
 #### Calculate Observed Frequencies & Expected Frequencies
@@ -166,7 +173,7 @@ ___
 ___
 
 <br>
-# Analysing The Results <a name="chi-square-results"></a>
+# Analyzing The Results <a name="chi-square-results"></a>
 
 
 
