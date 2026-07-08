@@ -49,7 +49,7 @@ The Hypothesis Test elements are defined as:
 
 Through Pandas, we can aggregate the observed data of *mailer_type* and *signup_flag* into a 2x2 matrix. We'll then feed these observed frequencies to the `chi2_contingency` algorithm provided by the `scipy` library to calculate the expected values, p-values, Degrees of Freedom (dof), and the Chi-Square Statistic.
 
-!!! We'll then check our data with the critical value?? 
+!!!We'll then compare these 
 
 *See more details on the Chi-Square Test, and other related concepts in the *Concept Overview* section*
 
@@ -57,7 +57,6 @@ Through Pandas, we can aggregate the observed data of *mailer_type* and *signup_
 
 The Chi-Square Test can be represented using a 2x2 data matrix, making the data easier to visualize and explain to stakeholders. Additionally, if the company ever had interest in expanding this campaign to more than two groups, we could easily adapt the Chi-Squared approach to include new group data, providing the business with a consistent way to measure variable significance. 
 
-<br>
 <br>
 
 ### Results & Discussion <a name="overview-results"></a>
@@ -202,7 +201,7 @@ By running the `crosstab` method, we see:
     * 209 customers did not sign up for the promotion
     * 127 customers signed up for the promotion   
 
-Since Chi-Squared contingency function won't accept Pandas DataFrames, we'll have to turn this data into an array by using *.values* property for observed_values.
+The Chi-Squared contingency function won't accept Pandas DataFrames, so we'll have to convert the observed values data into an array by using *.values* property for observed_values.
 
 ```python
 observed_values = pd.crosstab(campaign_data['mailer_type'],campaign_data['signup_flag']).values
@@ -211,13 +210,15 @@ print(observed_values)
        [209, 127]])
 ```
 
-Now that the observed_values are in an array, we can pass the observed_values into our `chi2_contingency` function that we imported with scipy.
+Now that the observed_values are in an array, we can pass the observed_values into our `chi2_contingency` function that we imported with `scipy`.
 
 Running the Chi-Squared function will provide us with the following:
 * **Expected values**
 * **P-values**
 * **Degrees of Freedom (dof)**: used for finding the critical value later
-* **chi2_statistic** !!!
+* **Chi2 Statistic** 
+
+We can additionally test the null hypothesis by finding the *critical value* along our Chi-Squared distribution based on our set acceptance criteria and our calculated dof, using the `chi2.ppf` percentage point function from the scipy library.
 
 ```python
 # run the chi-square test
@@ -228,23 +229,14 @@ print(chi2_statistic)
 
 print(p_value)
 >> 0.16
-```
 
-We will then run our acceptance criteria along with our calculated dof to find the critical value for our test !!!
 
-```python
-# find the critical value for our test
+# find the critical value for our test using chi2.ppf
 critical_value = chi2.ppf(1 - acceptance_criteria, dof)
 
 print(critical_value)
 >> 3.84
 ```
-
-Our calculated p-value of 0.16 is greater than our set acceptance criteria of 0.05, meaning that the difference in signup outcomes between the two mailing groups is not significant. Here, we fail to reject the null hypothesis, so the difference in rates we are seeing on our observed data alone is more due to chance than Mailer impact. 
-
-We can double down on this by comparing the critical value
-
-!!!Chi-Squared statistic compared to critical value calculated with chi2
 
 !!!
 Based upon our observed values, we can give this all some context with the signup rate of each group. We get:
@@ -261,6 +253,10 @@ ___
 
 <br>
 # Analyzing The Results <a name="chi-square-results"></a>
+
+Our calculated p-value of 0.16 is greater than our set acceptance criteria of 0.05, meaning that the difference in signup outcomes between the two mailing groups is not significant. Here, we fail to reject the null hypothesis, so the difference in rates we are seeing on our observed data alone is more due to chance than Mailer impact. 
+
+This conclusion is further supported by our Chi-Square statistic of 1.94 being lower than the calculated critical value of 3.84.
 
 ```python
 
