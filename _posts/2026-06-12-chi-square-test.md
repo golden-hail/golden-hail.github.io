@@ -171,7 +171,7 @@ As detailed in the *Concept Overview* section above, our **observed frequencies*
 
 Our observed values come directly from our campaign_data imported above. We are analyzing the impact that mailer_type had on member sign-up rates, so we'll want to pass these data points into the crosstab method.
 
-?!!! insert picture of chisquare test of independence ??
+We can visualize this data in the `DataFrame` below:
 ```python
 observed_vals = pd.crosstab(campaign_data['mailer_type'],campaign_data['signup_flag'])
 
@@ -182,7 +182,7 @@ print(observed_vals)
 >>> Mailer2      209  127
 ```
 
-By running the crosstab method, we see:  
+By running the `crosstab` method, we see:
 * For customers who received Mailer 1,
     * 252 customers did not sign up for the promotion
     * 123 customers signed up for the promotion. 
@@ -190,7 +190,7 @@ By running the crosstab method, we see:
     * 209 customers did not sign up for the promotion
     * 127 customers signed up for the promotion   
 
-The Chi-Squared contingency function won't accept the observed_vals dataframe in the code above, we'll have to turn this data into an array by using *.values* property for observed_values.
+Since Chi-Squared contingency function won't accept dataframes, we'll have to turn this data into an array by using *.values* property for observed_values.
 
 ```python
 observed_values = pd.crosstab(campaign_data['mailer_type'],campaign_data['signup_flag']).values
@@ -199,13 +199,13 @@ print(observed_values)
        [209, 127]])
 ```
 
-Now that the observed_values are of the appropriate type, we can move towards running our chi2_contingency function that we imported with scipy.
+Now that the observed_values are in an array, we can pass the observed_values into our `chi2_contingency` function that we imported with scipy.
 
 Running the Chi-Squared function will provide us with the following:
-* Expected values
-* P-values
-* Critical value
-* chi2_statistic
+* **Expected values**
+* **P-values**
+* **Degrees of Freedom (dof)**: used for finding the critical value later
+* **chi2_statistic**
 
 ```python
 # run the chi-square test
@@ -216,7 +216,10 @@ print(chi2_statistic)
 
 print(p_value)
 >> 0.16
+```
 
+We will then run our acceptance criteria along with our calculated dof to find the critical value for our test !!! which will be used for = 
+```python
 # find the critical value for our test
 critical_value = chi2.ppf(1 - acceptance_criteria, dof)
 
