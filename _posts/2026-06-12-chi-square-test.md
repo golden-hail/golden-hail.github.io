@@ -7,7 +7,7 @@ tags: [AB Testing, Hypothesis Testing, Chi-Square, Python]
 
 In this project, we'll be running an A/B test on grocery retailer campaign data to determine if the quality of promotion mail sent to customers significantly impacted who signed up for a promoted membership. 
 
-We will do this through applying the Chi-Square Test For Independence to measure the significance of the difference in signups between 2 groups.
+We will do this through applying the Chi-Square Test For Independence to measure the significance of the difference in signups between 2 groups of customers.
 
 # Table of contents
 
@@ -81,13 +81,13 @@ When performing any Hypothesis Test, the following must always be defined:
 
 * **The Acceptance Criteria**
 
-    To statistically determine whether to reject the null hypothesis in favor of the alternate, an "Acceptance Criteria" must be specified. The acceptance criteria, also known the Significance Level, is a specified p-value threshold in which we are measuring our Null Hypothesis against. In other words, the set threshold draws a line 
+    To statistically determine whether to reject the null hypothesis in favor of the alternate, an "Acceptance Criteria" must be specified. The acceptance criteria, also known the Significance Level, is a specified p-value threshold in which we are measuring our Null Hypothesis against. In other words, the set threshold draws a line between what we consider random chance and what we consider a statistically significant result.
 
-    A *p-value*, or probability value, is a value 0-1 that is used to determine if !!! It is a common practice to set the acceptance criteria to 0.05 or 5%.
+    A *p-value*, or probability value, is a calculated value used to determine if the data is extreme enough to reject the null hypothesis. It is a common practice to set the acceptance criteria to 0.05 or 5%.
 
-    * Low p-value (≤ 0.05): This suggests your results are highly unlikely to have occurred by chance. You have strong evidence to reject the null hypothesis.
+    * A *low p-value* (≤ 0.05) suggests your results are highly unlikely to have occurred by chance. There is strong evidence to reject the null hypothesis.
 
-    * High p-value (> 0.05): This means your results could easily happen under random variation. You fail to reject the null hypothesis, meaning there isn't enough evidence to prove a true effect exists
+    * A *High p-value* (> 0.05) means your results could easily happen under random variation. We would fail to reject the null hypothesis, meaning there isn't enough evidence to prove a true effect exists
 
 <br>
 **Types Of Hypothesis Test**
