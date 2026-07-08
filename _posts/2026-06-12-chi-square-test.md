@@ -39,8 +39,11 @@ The client knows that customers who were contacted, signed up for the Delivery C
 ### Actions <a name="overview-actions"></a>
 
 !!!!
+The Chi-Square Test For Independence will be applied to compare the signup rates of two distinct groups, Mailer1 and Mailer2. !!! See definition below.
 
-Note: The *Z-Test For Proportions* is another viable test to run for measuring rates. 
+Note: Another viable choice for an approach comparing *rates* would be *Z-Test For Proportions*, which would provide us with the same statistical result as the Chi-Square Test would. 
+
+The Chi-Square Test was chosen for this analysis as it can be represented using a 2x2 data matrix, making the data easier to visualize and explain to stakeholders. Additionally, if the company ever had interest in expanding this campaign to more than two groups, we could easily adapt the Chi-Squared approach to include new group data, providing the business with a consistent way to measure variable significance. 
 
 <br>
 <br>
@@ -88,15 +91,6 @@ When performing any Hypothesis Test, the following must always be defined:
     * A *low p-value* (≤ 0.05) suggests your results are highly unlikely to have occurred by chance. There is strong evidence to reject the null hypothesis.
 
     * A *High p-value* (> 0.05) means your results could easily happen under random variation. We would fail to reject the null hypothesis, meaning there isn't enough evidence to prove a true effect exists
-
-<br>
-**Types Of Hypothesis Test**
-
-There are many types of hypothesis tests. Choosing the right Hypothesis Test depends entirely on the objective is as well as what the data types the variables of interest are. Since we are interested in comparing the sign-up *rates* between two groups, the Chi-Square Test for Independence was chosen for the analysis in this report.
-
-Another viable choice for an approach comparing *rates* would be *Z-Test For Proportions*, which would provide us with the same statistical result as the Chi-Square Test would. 
-
-The Chi-Square Test was chosen for this analysis as it can be represented using a 2x2 data matrix, making the data easier to visualize and explain to stakeholders. Additionally, if the company ever had interest in expanding this campaign to more than two groups, we could easily adapt the Chi-Squared approach to include new group data, providing the business with a consistent way to measure variable significance. 
 
 <br>
 #### Chi-Square Test For Independence
@@ -170,19 +164,14 @@ null_hypothesis = "There is no relationship between mailer type and signup rate.
 alternate_hypothesis = "There is a relationship between mailer type and signup rate. They are not independent"
 acceptance_criteria = 0.05
 ```
-
+<br>
 #### Calculate Observed Frequencies & Expected Frequencies
 
-As detailed in the *Concept Overview* section above, our **observed frequencies** come directly from the rates per group in our collected data. In this case, our observed frequencies come directly from our campaign_data imported above. 
+As detailed in the *Concept Overview* section above, our **observed frequencies** come directly from the rates per group in our collected data. To get these frequencies, we'll create our 2x2 matrix needed for the Chi-Square approach, using a method called **crosstab()**. 
 
-!!!! For our *expected frequencies*, we will be calculating infered population parameters based on all the data combined if the variables being measured were truly independent from one another.
-
-Now, we'll create our 2x2 matrix needed for the Chi-Square approach, using a method called **crosstab()**. 
-
-Our observed values come directly from our campaign_data imported above. We are analyzing the impact mailer type had on member sign-up rates, so we'll want to pass these values into our method.
+Our observed values come directly from our campaign_data imported above. We are analyzing the impact that mailer_type had on member sign-up rates, so we'll want to pass these data points into the crosstab method.
 
 ?!!! insert picture of chisquare test of independence ??
-
 ```python
 observed_vals = pd.crosstab(campaign_data['mailer_type'],campaign_data['signup_flag'])
 
@@ -201,7 +190,7 @@ By running the crosstab method, we see:
     * 209 customers did not sign up for the promotion
     * 127 customers signed up for the promotion   
 
-Since the Chi-Squared contingency function won't accept the observed_vals dataframe in the code above, we'll have to turn this data into an array by using *.values* property for observed_values.
+The Chi-Squared contingency function won't accept the observed_vals dataframe in the code above, we'll have to turn this data into an array by using *.values* property for observed_values.
 
 ```python
 observed_values = pd.crosstab(campaign_data['mailer_type'],campaign_data['signup_flag']).values
@@ -210,7 +199,13 @@ print(observed_values)
        [209, 127]])
 ```
 
-Now that the observed_values are of the appropriate type, we can plug this array into our Chi-Squared contingency function:
+Now that the observed_values are of the appropriate type, we can move towards running our chi2_contingency function that we imported with scipy.
+
+Running the Chi-Squared function will provide us with the following:
+* Expected values
+* P-values
+* Critical value
+* chi2_statistic
 
 ```python
 # run the chi-square test
@@ -228,22 +223,10 @@ critical_value = chi2.ppf(1 - acceptance_criteria, dof)
 print(critical_value)
 >> 3.84
 ```
-
-!!! (move this section above frequencies since it doesn't take into account chance?) Let's do an elementary check - The signup rate of the observed values from the campaign is below. From the campaign data alone, at a first glance, it does seem as though the fancy higher cost mailer yielded a higher signup rate at ___ %. How do we account for this chance? what if they were going to signup anyway? 
-
-```python
-mailer1_signup_rate = 123 / (252 + 123) * 100
-mailer2_signup_rate = 127 / (209 + 127) * 100
-
-print()
-```
-
 ___
 
 <br>
 # Analyzing The Results <a name="chi-square-results"></a>
-
-
 
 ```python
 
@@ -255,6 +238,19 @@ ___
 
 <br>
 # Discussion <a name="discussion"></a>
+
+When analyzing the observed signup rates of the two mailer groups alone without consideration of random chance effecting values, it does appear that the customers who received fancy Mailer 2 signed up at a higher rate than the customers who received the cheap Mailer 1.
+
+From the campaign data alone, at a first glance, it does seem as though the fancy higher cost mailer yielded a higher signup rate at ___ %. How do we account for this chance? what if they were going to signup anyway? 
+
+```python
+mailer1_signup_rate = 123 / (252 + 123) * 100
+mailer2_signup_rate = 127 / (209 + 127) * 100
+
+print(mailer1_signup_rate, mailer2_signup_rate)
+```
+
+With a p-value, critical value of ___, we see 
 
 Because there is no significant difference between the signup rate of Mailer recipients, we could recommend that for the next promotion, the grocery store only send the cheap version of the mailers to customers. This can save the business money overall.
 
