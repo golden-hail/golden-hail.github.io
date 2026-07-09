@@ -39,17 +39,17 @@ The client knows that customers who were contacted, signed up for the Delivery C
 ### Actions <a name="overview-actions"></a>
 
 The Chi-Square Test For Independence will be applied to compare the **signup rates** of two distinct groups from our *campaign_data* client database:
-	* customers who received cheap **Mailer1** 
-	* customers who received the higher quality **Mailer2**.
+    * customers who received cheap **Mailer1** 
+    * customers who received the higher quality **Mailer2**.
 
-The Hypothesis Test elements are defined as:
-**Null Hypothesis:** There is no relationship between mailer type and signup rate. They are independent and any difference or correlation in effects are due to chance.
-**Alternate Hypothesis:** There is a true relationship between mailer type and signup rate. They are not independent.
-**Acceptance Criteria:** 0.05 (5%)
+The Hypothesis Test elements are defined as:  
+* **Null Hypothesis:** There is no relationship between mailer type and signup rate. They are independent variables and any difference in signup rates are due to chance.  
+* **Alternate Hypothesis:** There is a true relationship between mailer type and signup rate. They are not independent.  
+* **Acceptance Criteria:** 0.05 (5%)  
 
 Through Pandas, we can aggregate the observed data of *mailer_type* and *signup_flag* into a 2x2 matrix. We'll then feed these observed frequencies to the `chi2_contingency` algorithm provided by the `scipy` library to calculate the expected values, p-values, Degrees of Freedom (dof), and the Chi-Square Statistic.
 
-!!!We'll then compare these 
+We'll then take this one step further and find our Critical Value to truly get a grasp on whether we should reject or fail to reject our null hypothesis.
 
 *See more details on the Chi-Square Test, and other related concepts in the *Concept Overview* section*
 
@@ -101,18 +101,22 @@ When performing any Hypothesis Test, the following must always be defined:
 
     * A *low p-value* (≤ 0.05) suggests your results are highly unlikely to have occurred by chance. There is strong evidence to reject the null hypothesis.
 
-    * A *High p-value* (> 0.05) means your results could easily happen under random variation. We would fail to reject the null hypothesis, meaning there isn't enough evidence to prove a true effect exists
+    * A *High p-value* (> 0.05) means your results could easily happen under random variation. We would fail to reject the null hypothesis, meaning there isn't enough evidence to prove a true association exists
 
 <br>
 #### Chi-Square Test For Independence
 
 The **Chi-Square Test For Independence** is a hypothesis test used to determine whether a significant association exists between two categorical variables. It compares the *observed frequencies* from the actual data points collected from a sample against the *expected frequencies*, the data expected to be seen if the two variables were truly independent.
 
-The *Null Hypothesis* described above is our baseline assumption. It assumes that there is no relationship or difference between the two variables. It asserts that the observed frequencies of data will match the expected frequencies, with any correlation or minor difference being the result of random chance.
+The *Null Hypothesis* described above is our baseline assumption. It assumes that there is no relationship or difference between the two variables. It asserts that the observed frequencies of data will match the expected frequencies, with any minor difference being the result of random chance.
 
-To assess whether differences in observed frequencies are true or due to random chance, !!!the Chi-Square Contingency function provides a chi2 statistic that can be compared against a calculated critical value, in order to reject or fail to reject a null hypothesis.
+The Chi-Square Contingency function provides a Chi-Square statistic that can be compared against a calculated *critical value*, in order to reject or fail to reject a null hypothesis.
 
-!!! TO BE CONTINUED - We do this by running the chi2 contingency function on our data and find a p-value that we run against our acceptance criteria (OR MAYBE DON'T CONTINUE AND IT"S TOO MUCH FLUFF) To assess whether differences are true or due to minor chance, 
+	* Chi-Square Statistic < Critical Value: We retain the null hypothesis - the observed results could easily happen under random variation.  meaning there isn't enough evidence to prove a true association exists between variables
+	* Chi-Square Statistic ≥ Critical Value: We reject the null hypothesis - the observed results are highly unlikely to have occurred by chance providing strong evidence that an association exists between variables
+
+This function also provides a p-value, which can be compared to the chosen acceptance criteria (also known as the significance level, commonly set to 0.05). If the p-value is less than or equal to this acceptance criteria, the null hypothesis is rejected.
+
 ___
 
 <br>
@@ -237,11 +241,14 @@ print(critical_value)
 >> 3.84
 ```
 
-With that code in place, we have all of the values necessary to analyze the results, assess the null hypothesis, and draw a conclusion.
+*Note: The chi2_contingency function accepts a correction parameter. By setting correction = False, we are setting our degrees of freedom to 1, applying Yate's Correction. This is necessary to define as we are comparing 2 group totals against their result in a 2x2 matrix*
 
 !!!
 *Note:* When applying the Chi-Square Test above, we use the parameter correction = False which means we are applying what is known as the Yate’s Correction which is applied when your Degrees of Freedom is equal to one. This correction helps to prevent overestimation of statistical significance in this case.
 !!!
+
+With that code in place, we have all of the values necessary to analyze the results, assess the null hypothesis, and draw a conclusion.
+
 ___
 
 <br>
@@ -252,39 +259,22 @@ Based upon the raw observed values from the campaign, we can see that the signup
 Mailer 1 (Low Cost): 32.8% signup rate
 Mailer 2 (High Cost): 37.8% signup rate
 
-The Chi-Square test gives us further insight into whether or not this difference in rate was truly due to the quality of the mailer, or rather, just due to chance.
+The Chi-Square test gives us further insight into whether this difference in signup rate was truly due to the quality of the mailer, or just due to chance.
 
 Our calculated p-value of 0.16 is greater than our set acceptance criteria of 0.05, meaning that **the difference in signup outcomes between the two mailing groups is not significant.** 
 
-This conclusion is further supported by our Chi-Square statistic of 1.94 being lower than the calculated critical value of 3.84. In both cases, we **retain the null hypothesis**. There is no relationship between mailer type and signup rate. They are independent.
+This conclusion is further supported by our Chi-Square statistic of 1.94 being lower than the calculated critical value of 3.84. In both cases, we **retain the null hypothesis** as there is not enough evidence that the signup rates for Mailer 1 and Mailer 2 were significantly different.
 
 ___
 
 <br>
 # Discussion <a name="discussion"></a>
 
-While Mailer 2 saw a higher sign-up rate than Mailer 1 (37.8% vs. 32.8%), the difference was not statistically significant at our 0.05 threshold.
+!!!!
+While Mailer 2 saw a higher sign-up rate than Mailer 1 (37.8% vs. 32.8%), the difference was not statistically significant at our 0.05 acceptance criteria threshold. The results of the hypothesis test suggest that the the more expensive mailer didn't truly impact whether a customer signed up or not.
 
+At first glance, our client may have assumed that the quality of expensive Mailer 2 may have been a driving force in signup rate. Without our hypothesis test, the client may have considered sending strictly the fancy Mailers, for their next promotion, losing unneccessary funding. 
 
-Though customers Mailer 2 
-At a first glance, it does appear that perhaps customers who receive fancy Mailer 2 
-When analyzing the observed signup rates of the two mailer groups alone without consideration of random chance effecting values, it does appear that the customers who received fancy Mailer 2 signed up at a higher rate than the customers who received the cheap Mailer 1.
+Though we've concluded there is no significant difference between signup rates, it is important to note that we've only analyzed a small sample of data from one campaign. The evidence supporting our null hypothesis rejection does not garuntee that the quality in mailer didn't make a difference, our experiment justifies us in advising our client that we should not jump to conclusions just yet on the impact of the mailers. 
 
-From the campaign data alone, at a first glance, it does seem as though the fancy higher cost mailer yielded a higher signup rate at ___ %. How do we account for this chance? what if they were going to signup anyway? 
-
-```python
-mailer1_signup_rate = 123 / (252 + 123) * 100
-mailer2_signup_rate = 127 / (209 + 127) * 100
-
-print(mailer1_signup_rate, mailer2_signup_rate)
-```
-
-With a p-value, critical value of ___, we see 
-
-Because there is no significant difference between the signup rate of Mailer recipients, we could recommend that for the next promotion, the grocery store only send the cheap version of the mailers to customers. This can save the business money overall.
-
-If we did however, determine that Mailer 2 led to significantly more customers signing up, then we may consider going forward with only sending out Mailer 2 to keep us ahead of the competition by appealing to newer folks.
-
-ROI in campaign by saving money on mailers, if expanding to other stores in a chain or a wider audiance after the pilot 
-
- It seems that the quality of the mailer had no statistical impact on who signed up for the campaign
+Running more A/B tests like this over more data would give us more insight overtime. With more experiments supporting retaining the null hypothesis, we may recommend that for the next promotion, the grocery store only send the cheaper version of the mailers to customers to cut printing costs. 
