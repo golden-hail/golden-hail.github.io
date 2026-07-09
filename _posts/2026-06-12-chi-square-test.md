@@ -110,7 +110,9 @@ The **Chi-Square Test For Independence** is a hypothesis test used to determine 
 
 The *Null Hypothesis* described above is our baseline assumption. It assumes that there is no relationship or difference between the two variables. It asserts that the observed frequencies of data will match the expected frequencies, with any correlation or minor difference being the result of random chance.
 
-!!! TO BE CONTINUED - We do this by running the chi2 contingency function on our data and find a p-value that we run against our acceptance criteria (OR MAYBE DON'T CONTINUE AND IT"S TOO MUCH FLUFF)
+To assess whether differences in observed frequencies are true or due to random chance, !!!the Chi-Square Contingency function provides a chi2 statistic that can be compared against a calculated critical value, in order to reject or fail to reject a null hypothesis.
+
+!!! TO BE CONTINUED - We do this by running the chi2 contingency function on our data and find a p-value that we run against our acceptance criteria (OR MAYBE DON'T CONTINUE AND IT"S TOO MUCH FLUFF) To assess whether differences are true or due to minor chance, 
 ___
 
 <br>
@@ -119,7 +121,7 @@ ___
 Our table of interest in the grocery client database is the *campaign_data* table. 
 This table contains each each unique customer_id, the type of mailer they received, if any, and whether or not the customer signed up for the Delivery Club membership.
 
-To determine whether the fancier Mailer 2 lead to a significant difference of people to sign up as opposed to the cheaper Mailer 1, we will first need to exclude the control group from the data by extracting the customers who got either mailer.
+To determine whether the fancier Mailer 2 led to a significant difference of people to sign up as opposed to the cheaper Mailer 1, we will first need to exclude the control group from the data by extracting the customers who got either mailer.
 
 ```python
 # import the required python libraries
@@ -169,12 +171,10 @@ To kick off our Hypothesis Test, we'll need to define our **Null Hypothesis**, o
 
 For our Acceptance Criteria, we'll be using the commonly used value of 0.05 (or 5%).
 
-```python
-# specify hypotheses & acceptance criteria for test
-null_hypothesis = "There is no relationship between mailer type and signup rate. They are independent"
-alternate_hypothesis = "There is a relationship between mailer type and signup rate. They are not independent"
-acceptance_criteria = 0.05
-```
+* null_hypothesis: There is no relationship between mailer type and signup rate. They are independent.
+* alternate_hypothesis: There is a relationship between mailer type and signup rate. They are not independent.
+* acceptance_criteria: 0.05
+
 <br>
 #### Calculate Observed Frequencies & Expected Frequencies
 
@@ -230,7 +230,6 @@ print(chi2_statistic)
 print(p_value)
 >> 0.16
 
-
 # find the critical value for our test using chi2.ppf
 critical_value = chi2.ppf(1 - acceptance_criteria, dof)
 
@@ -238,39 +237,37 @@ print(critical_value)
 >> 3.84
 ```
 
+With that code in place, we have all of the values necessary to analyze the results, assess the null hypothesis, and draw a conclusion.
+
 !!!
-Based upon our observed values, we can give this all some context with the signup rate of each group. We get:
-
-Mailer 1 (Low Cost): 32.8% signup rate
-Mailer 2 (High Cost): 37.8% signup rate
-From this, we can see that the higher cost mailer does lead to a higher signup rate. The results from our Chi-Square Test will provide us more information about how confident we can be that this difference is robust, or if it might have occured by chance.
-
-We have a Chi-Square Statistic of 1.94 and a p-value of 0.16. The critical value for our specified Acceptance Criteria of 0.05 is 3.84
-
-Note When applying the Chi-Square Test above, we use the parameter correction = False which means we are applying what is known as the Yate’s Correction which is applied when your Degrees of Freedom is equal to one. This correction helps to prevent overestimation of statistical significance in this case.
+*Note:* When applying the Chi-Square Test above, we use the parameter correction = False which means we are applying what is known as the Yate’s Correction which is applied when your Degrees of Freedom is equal to one. This correction helps to prevent overestimation of statistical significance in this case.
 !!!
 ___
 
 <br>
 # Analyzing The Results <a name="chi-square-results"></a>
 
-Our calculated p-value of 0.16 is greater than our set acceptance criteria of 0.05, meaning that the difference in signup outcomes between the two mailing groups is not significant. Here, we fail to reject the null hypothesis, so the difference in rates we are seeing on our observed data alone is more due to chance than Mailer impact. 
+Based upon the raw observed values from the campaign, we can see that the signup rate for customers receiving Mailer 2 was higher than for the customers receiving Mailer 1:
 
-This conclusion is further supported by our Chi-Square statistic of 1.94 being lower than the calculated critical value of 3.84.
+Mailer 1 (Low Cost): 32.8% signup rate
+Mailer 2 (High Cost): 37.8% signup rate
 
-```python
+The Chi-Square test gives us further insight into whether or not this difference in rate was truly due to the quality of the mailer, or rather, just due to chance.
 
-```
-<br>
-As we can see from the outputs of these print statements, we do indeed retain the null hypothesis.  We could not find enough evidence that the signup rates for Mailer 1 and Mailer 2 were different - and thus conclude that there was no significant difference. It seems that the quality of the mailer had no statistical impact on who signed up for the campaign.
+Our calculated p-value of 0.16 is greater than our set acceptance criteria of 0.05, meaning that **the difference in signup outcomes between the two mailing groups is not significant.** 
 
-Maybe from here, we could look into whether the customer's distances from the stores impact whether ornot they want to be i nthe deilvery club or not.
+This conclusion is further supported by our Chi-Square statistic of 1.94 being lower than the calculated critical value of 3.84. In both cases, we **retain the null hypothesis**. There is no relationship between mailer type and signup rate. They are independent.
 
 ___
 
 <br>
 # Discussion <a name="discussion"></a>
 
+While Mailer 2 saw a higher sign-up rate than Mailer 1 (37.8% vs. 32.8%), the difference was not statistically significant at our 0.05 threshold.
+
+
+Though customers Mailer 2 
+At a first glance, it does appear that perhaps customers who receive fancy Mailer 2 
 When analyzing the observed signup rates of the two mailer groups alone without consideration of random chance effecting values, it does appear that the customers who received fancy Mailer 2 signed up at a higher rate than the customers who received the cheap Mailer 1.
 
 From the campaign data alone, at a first glance, it does seem as though the fancy higher cost mailer yielded a higher signup rate at ___ %. How do we account for this chance? what if they were going to signup anyway? 
@@ -290,3 +287,4 @@ If we did however, determine that Mailer 2 led to significantly more customers s
 
 ROI in campaign by saving money on mailers, if expanding to other stores in a chain or a wider audiance after the pilot 
 
+ It seems that the quality of the mailer had no statistical impact on who signed up for the campaign
