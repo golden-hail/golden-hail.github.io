@@ -45,7 +45,7 @@ The Chi-Square Test For Independence will be applied to compare the **signup rat
 The Hypothesis Test elements are defined as:  
 * **Null Hypothesis:** There is no relationship between mailer type and signup rate. They are independent variables and any difference in signup rates are due to chance.  
 * **Alternate Hypothesis:** There is a true relationship between mailer type and signup rate. They are not independent.  
-* **Acceptance Criteria:** 0.05 (5%)  
+* **Significance Level:** 0.05 (5%)  
 
 Through Pandas, we can aggregate the observed data of *mailer_type* and *signup_flag* into a 2x2 matrix. We'll then feed these observed frequencies to the `chi2_contingency` algorithm provided by the `scipy` library to calculate the expected values, p-values, Degrees of Freedom (dof), and the Chi-Square Statistic.
 
@@ -93,11 +93,11 @@ When performing any Hypothesis Test, the following must always be defined:
 
     The "Alternate Hypothesis" suggests that there is a significant and measurable relationship, effect, or difference between variables, directly contradicting the Null Hypothesis. When we reject the Null Hypothesis, we accept the Alternate Hypothesis, concluding that the observed relationship is highly unlikely to have occurred by chance alone.
 
-* **The Acceptance Criteria**
+* **The Significance Level**
 
-    To statistically determine whether to reject the null hypothesis in favor of the alternate, an "Acceptance Criteria" must be specified. The acceptance criteria, also known the Significance Level, is a specified p-value threshold in which we are measuring our Null Hypothesis against. In other words, the set threshold draws a line between what we consider random chance and what we consider a statistically significant result.
+    To statistically determine whether to reject the null hypothesis in favor of the alternate, a "significance level" must be specified. The *significance level* is a specified p-value threshold in which we are measuring our null hypothesis against. In other words, the set threshold draws a line between what we consider random chance and what we consider a statistically significant result.
 
-    A *p-value*, or probability value, is a calculated value used to determine if the data is extreme enough to reject the null hypothesis. It is a common practice to set the acceptance criteria to 0.05 or 5%.
+    A *p-value*, or probability value, is a calculated value used to determine if the data is extreme enough to reject the null hypothesis. It is a common practice to set the significance level to 0.05 or 5%.
 
     * A *low p-value* (≤ 0.05) suggests your results are highly unlikely to have occurred by chance. There is strong evidence to reject the null hypothesis.
 
@@ -115,7 +115,7 @@ The Chi-Square Contingency function provides a Chi-Square statistic that can be 
 	* Chi-Square Statistic < Critical Value: We retain the null hypothesis - the observed results could easily happen under random variation.  meaning there isn't enough evidence to prove a true association exists between variables
 	* Chi-Square Statistic ≥ Critical Value: We reject the null hypothesis - the observed results are highly unlikely to have occurred by chance providing strong evidence that an association exists between variables
 
-This function also provides a p-value, which can be compared to the chosen acceptance criteria (also known as the significance level, commonly set to 0.05). If the p-value is less than or equal to this acceptance criteria, the null hypothesis is rejected.
+This function also provides a p-value, which can be compared to the chosen significance level (commonly set to 0.05). If the p-value is less than or equal to this significance level, the null hypothesis is rejected.
 
 ___
 
@@ -169,11 +169,11 @@ ___
 # Applying Chi-Square Test For Independence <a name="chi-square-application"></a>
 
 
-#### State Hypotheses & Acceptance Criteria For Test
+#### State Hypotheses & Significance Level For Test
 
-To kick off our Hypothesis Test, we'll need to define our **Null Hypothesis**, our **Alternate Hypothesis**, and our **Acceptance Criteria**. (See more on these terms in the *Concept Overview* section above)
+To kick off our Hypothesis Test, we'll need to define our **Null Hypothesis**, our **Alternate Hypothesis**, and our **Significance Level**. (See more on these terms in the *Concept Overview* section above)
 
-For our Acceptance Criteria, we'll be using the commonly used value of 0.05 (or 5%).
+For our significance level, we'll be using the commonly used value of 0.05 (or 5%).
 
 * null_hypothesis: There is no relationship between mailer type and signup rate. They are independent.
 * alternate_hypothesis: There is a relationship between mailer type and signup rate. They are not independent.
@@ -222,7 +222,7 @@ Running the Chi-Squared function will provide us with the following:
 * **Degrees of Freedom (dof)**: used for finding the critical value later
 * **Chi2 Statistic** 
 
-We can additionally test the null hypothesis by finding the *critical value* along our Chi-Squared distribution based on our set acceptance criteria and our calculated dof, using the `chi2.ppf` percentage point function from the scipy library.
+We can additionally test the null hypothesis by finding the *critical value* along our Chi-Squared distribution based on our set significance level and our calculated dof, using the `chi2.ppf` percentage point function from the scipy library.
 
 ```python
 # run the chi-square test
@@ -261,7 +261,7 @@ Mailer 2 (High Cost): 37.8% signup rate
 
 The Chi-Square test gives us further insight into whether this difference in signup rate was truly due to the quality of the mailer, or just due to chance.
 
-Our calculated p-value of 0.16 is greater than our set acceptance criteria of 0.05, meaning that **the difference in signup outcomes between the two mailing groups is not significant.** 
+Our calculated p-value of 0.16 is greater than our set significance level of 0.05, meaning that **the difference in signup outcomes between the two mailing groups is not significant.** 
 
 This conclusion is further supported by our Chi-Square statistic of 1.94 being lower than the calculated critical value of 3.84. In both cases, we **retain the null hypothesis** as there is not enough evidence that the signup rates for Mailer 1 and Mailer 2 were significantly different.
 
@@ -270,11 +270,13 @@ ___
 <br>
 # Discussion <a name="discussion"></a>
 
+While Mailer 2 yielded a higher sign-up rate than Mailer 1 (37.8% vs. 32.8%), the difference was not statistically significant at our 0.05 significance level. The results of the Chi-Square test of independence suggest that we cannot conclude the more expensive mailer had a true impact on whether a customer signed up.
+
+At first glance, the client might look at the raw percentages and assume the premium quality of Mailer 2 drove the sign-ups. Without this hypothesis test, they may have considered sending exclusively the more expensive mailers for their next promotion—potentially wasting valuable funding.
+
+However, because this analysis was limited to a small sample size from a single campaign, failing to reject the null hypothesis does not definitively prove that mailer quality makes no difference. It simply means we currently lack the evidence to prove that it does. Therefore, we advise the client not to jump to conclusions just yet. Running additional A/B tests over time will provide deeper insights; if future data consistently supports retaining the null hypothesis, we can then confidently recommend sticking to the cheaper mailers to optimize printing costs.
+
 !!!!
-While Mailer 2 saw a higher sign-up rate than Mailer 1 (37.8% vs. 32.8%), the difference was not statistically significant at our 0.05 acceptance criteria threshold. The results of the hypothesis test suggest that the the more expensive mailer didn't truly impact whether a customer signed up or not.
-
-At first glance, our client may have assumed that the quality of expensive Mailer 2 may have been a driving force in signup rate. Without our hypothesis test, the client may have considered sending strictly the fancy Mailers, for their next promotion, losing unneccessary funding. 
-
-Though we've concluded there is no significant difference between signup rates, it is important to note that we've only analyzed a small sample of data from one campaign. The evidence supporting our null hypothesis rejection does not garuntee that the quality in mailer didn't make a difference, our experiment justifies us in advising our client that we should not jump to conclusions just yet on the impact of the mailers. 
-
-Running more A/B tests like this over more data would give us more insight overtime. With more experiments supporting retaining the null hypothesis, we may recommend that for the next promotion, the grocery store only send the cheaper version of the mailers to customers to cut printing costs. 
+*To Do*
+yate's correction
+Results & Discussion
