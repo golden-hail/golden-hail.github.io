@@ -66,17 +66,13 @@ The Chi-Square Test can be represented using a 2x2 data matrix, making the data 
 
 At a first glance of the observed data, it appears that the high-cost mailer yielded a higher signup rate:
 
-'''
-* Mailer 1 (low-cost): 32.8% signup rate
-* Mailer 2 (high-cost): 37.8% signup rate
-'''
+    * Mailer 1 (low-cost): 32.8% signup rate
+    * Mailer 2 (high-cost): 37.8% signup rate
 
 However, the results of the Chi-Square Test of Independence indicate otherwise:
 
-'''
-* Chi-Square Statistic: 1.94 < Critical Value: 3.84
-* p-value: 0.16 > Acceptance Criteria 0.05
-'''
+    * Chi-Square Statistic: 1.94 < Critical Value: 3.84
+    * p-value: 0.16 > Acceptance Criteria 0.05
 
 With these results, we retain the null hypothesis and conclude there is no measurable relationship between mailer cost and signup rates. This suggests that the 5% variation in signup rate could be due to random chance.
 
