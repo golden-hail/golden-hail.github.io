@@ -5,7 +5,13 @@ title: Earthquake Tracker - Tableau Dashboard
 tags: [Tableau, Data Viz]
 ---
 
-This Tableau dashboard tracks global earthquake activity for a given data set of a 30 day period.
+This interactive Tableau dashboard tracks global earthquake activity for a given data set of a 30 day period.
+
+!!!Note: formatting this dashboard has proven difficult to do with the .md file/java/html..., Please click on the "View on Tableau Public" to see the dashboard in full
+
+!! Scroll through each day in the upper right hand slide bar
+!! Hover your mouse over the data circles on the map to easily see earthquake information such as magnitude, and location
+!! See the earthquake frequency and magnitude of each location for the entire dataset or by day 
 
 ___
 
@@ -63,6 +69,6 @@ ___
 * The USGS (United States Geological Survey) estimates an average of 16 major earthquakes per year, with a magnitude of 7.0 or higher 
 
 # to do!! 
-* fix viz
+* fix viz (how it's formatted on the gitpage)
 * deeper description of what the dashboard entails
 * upload image of dashboard for main page
