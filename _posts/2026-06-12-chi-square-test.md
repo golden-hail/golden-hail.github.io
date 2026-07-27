@@ -36,6 +36,8 @@ For the campaign promoting the club, customers were put randomly into three grou
 
 The client knows that customers who were contacted, signed up for the Delivery Club at a far higher rate than the control group, but are now curious as to if there is a significant difference in customer signup rate between the cheap mailer and the expensive mailer. This will allow them to make more informed decisions in the future, such as whether it is worth it to spend the money on higher cost mailers or not.
 
+<br>
+
 ### Actions <a name="overview-actions"></a>
 
 The Chi-Square Test of Independence will be applied to compare the **signup rates** of two distinct groups from our *campaign_data* client database:
@@ -63,25 +65,23 @@ The Chi-Square Test can be represented using a 2x2 data matrix, making the data 
 
 At a first glance of the observed data, it appears that the high-cost mailer yielded a higher signup rate:
 
-*Mailer 1 (low-cost): 32.8% signup rate
-*Mailer 2 (high-cost): 37.8% signup rate
+* Mailer 1 (low-cost): 32.8% signup rate
+* Mailer 2 (high-cost): 37.8% signup rate
 
 However, the results of the Chi-Square Test of Independence indicate otherwise:
 
-*Chi-Square Statistic: 1.94 < Critical Value: 3.84
-*p-value: 0.16 > Acceptance Criteria 0.05
+* Chi-Square Statistic: 1.94 < Critical Value: 3.84
+* p-value: 0.16 > Acceptance Criteria 0.05
 
 With these results, we retain the null hypothesis and conclude there is no measurable relationship between mailer cost and signup rates. This suggests that the 5% variation in signup rate could be due to random chance.
 
-**Business Impact:**
+**Business Impact:**  
 Upgrading to the higher-cost mailer risks increasing spending without reliably driving additional revenue.
 
-**Next Steps:**
+**Next Steps:**  
 As current findings do not support a permanent shift to higher-cost mailers, we advise running additional A/B tests with larger sample sizes to confirm whether a true performance gap exists or not.
 
 <br>
-<br>
-
 ___
 
 # Concept Overview  <a name="concept-overview"></a>
@@ -136,7 +136,6 @@ This function also provides a p-value, which can be compared to the chosen signi
 
 ___
 
-<br>
 # Data Overview & Preparation  <a name="data-overview"></a>
 
 Our table of interest in the grocery client database is the *campaign_data* table. 
@@ -185,6 +184,7 @@ ___
 <br>
 # Applying Chi-Square Test of Independence <a name="chi-square-application"></a>
 
+<br>
 
 #### State Hypotheses & Significance Level For Test
 
@@ -264,7 +264,6 @@ With that code in place, we have all of the values necessary to analyze the resu
 
 ___
 
-<br>
 # Analyzing The Results <a name="chi-square-results"></a>
 
 Based upon the raw observed values from the campaign, we can see that the signup rate for customers receiving Mailer 2 was higher than for the customers receiving Mailer 1:
@@ -280,7 +279,6 @@ This conclusion is further supported by our Chi-Square statistic of 1.94 being l
 
 ___
 
-<br>
 # Discussion <a name="discussion"></a>
 
 While Mailer 2 yielded a higher signup rate than Mailer 1 (37.8% vs. 32.8%), the difference was not statistically significant at our 0.05 significance level. The results of the Chi-Square test of independence reveal that we cannot yet conclude whether the more expensive mailer had a true impact on whether a customer signed up.
@@ -288,7 +286,3 @@ While Mailer 2 yielded a higher signup rate than Mailer 1 (37.8% vs. 32.8%), the
 At first glance, the client might look at the raw percentages and assume the premium quality of Mailer 2 was the driving force behind the higher signup rate. Without this hypothesis test, they may have considered exclusively sending the more expensive mailers for their next promotion, potentially wasting valuable funding.
 
 It is important to note that this analysis was limited to a small sample size from a single campaign. *Failing to reject the null hypothesis does not definitively prove that mailer quality didn't impact signup rates, it simply means we currently lack the evidence to prove that it does.* Therefore, we advise the client not to jump to conclusions just yet. Running additional A/B tests over time will provide deeper insights. If future data consistently supports retaining the null hypothesis, we can then confidently recommend sticking to the cheaper mailers to optimize printing costs.
-
-!!!!
-*To Do*
-spell check 
