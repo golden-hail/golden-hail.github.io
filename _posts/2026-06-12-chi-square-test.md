@@ -7,7 +7,7 @@ tags: [AB Testing, Hypothesis Testing, Chi-Square, Python]
 
 In this project, we'll be running an A/B test on grocery retailer campaign data to determine if the quality of promotion mail sent to customers significantly impacted who signed up for a promoted membership. 
 
-We will do this through applying the Chi-Square Test For Independence to measure the significance of the difference in signups between 2 groups of customers.
+We will do this through applying the Chi-Square Test of Independence to measure the significance of the difference in signups between 2 groups of customers.
 
 # Table of contents
 
@@ -18,7 +18,7 @@ We will do this through applying the Chi-Square Test For Independence to measure
 - [01. Concept Overview](#concept-overview)
 - [02. Data Overview & Preparation](#data-overview)
 - [03. Applying Chi-Square Test For Independence](#chi-square-application)
-- [04. Analysing The Results](#chi-square-results)
+- [04. Analyzing The Results](#chi-square-results)
 - [05. Discussion](#discussion)
 
 ___
@@ -27,20 +27,20 @@ ___
 
 ### Context <a name="overview-context"></a>
 
-In late June, our client, a grocery retailer, ran a campaign to promote their new "Delivery Club" membership. Signing up for the club costs $100 and gives customers free grocery deliveries for one year, starting June 1st.
+In late June, our client, a grocery retailer, ran a campaign to promote their new "Delivery Club" memberships. Signing up for the club costs $100 and gives customers free grocery deliveries for one year, starting June 1st.
 
 For the campaign promoting the club, customers were put randomly into three groups: 
-* The first group received a cheap, low quality mailer, Mailer 1.
+* The first group received a bland, low cost mailer, Mailer 1.
 * The second group received a colorful, high quality, high cost mailer, Mailer 2. 
-* The third group was a control group. They did not receive any mailer.
+* The third group was a control group. They did not receive any mail.
 
-The client knows that customers who were contacted, signed up for the Delivery Club at a far higher rate than the control group, but are now curious as to if there is a significant difference in customer signup rate between the cheap mailer and the expensive mailer. This will allow them to make more informed decisions in the future, such as whether it is worth it to spend the money on fancier mailers or not.
+The client knows that customers who were contacted, signed up for the Delivery Club at a far higher rate than the control group, but are now curious as to if there is a significant difference in customer signup rate between the cheap mailer and the expensive mailer. This will allow them to make more informed decisions in the future, such as whether it is worth it to spend the money on higher cost mailers or not.
 
 ### Actions <a name="overview-actions"></a>
 
-The Chi-Square Test For Independence will be applied to compare the **signup rates** of two distinct groups from our *campaign_data* client database:
-    * customers who received cheap **Mailer1** 
-    * customers who received the higher quality **Mailer2**.
+The Chi-Square Test of Independence will be applied to compare the **signup rates** of two distinct groups from our *campaign_data* client database:
+    * customers who received low cost **Mailer1** 
+    * customers who received the higher quality, high cost **Mailer2**.
 
 The Hypothesis Test elements are defined as:  
 * **Null Hypothesis:** There is no relationship between mailer type and signup rate. They are independent variables and any difference in signup rates are due to chance.  
@@ -61,7 +61,23 @@ The Chi-Square Test can be represented using a 2x2 data matrix, making the data 
 
 ### Results & Discussion <a name="overview-results"></a>
 
-!!!!
+At a first glance of the observed data, it appears that the high-cost mailer yielded a higher signup rate:
+
+*Mailer 1 (low-cost): 32.8% signup rate
+*Mailer 2 (high-cost): 37.8% signup rate
+
+However, the results of the Chi-Square Test of Independence indicate otherwise:
+
+*Chi-Square Statistic: 1.94 < Critical Value: 3.84
+*p-value: 0.16 > Acceptance Criteria 0.05
+
+With these results, we retain the null hypothesis and conclude there is no measurable relationship between mailer cost and signup rates. This suggests that the 5% variation in signup rate could be due to random chance.
+
+**Business Impact:**
+Upgrading to the higher-cost mailer risks increasing spending without reliably driving additional revenue.
+
+**Next Steps:**
+As current findings do not support a permanent shift to higher-cost mailers, we advise running additional A/B tests with larger sample sizes to confirm whether a true performance gap exists or not.
 
 <br>
 <br>
@@ -74,7 +90,7 @@ ___
 
 An A/B test takes two randomized groups, A and B, and provides them with different experiences. In the A/B test, we measure the response of each group to understand the impact each experience had on the response. These insights can help drive business decisions in the future.
 
-For example, a company may post 2 different pictures advertising the same product on their website. With an A/B test, we could look to measure if the picture used in the ad significantly impacted the amount of users who clicked on the ad. If one ad yielded significantly more clicks, the business can use this data when thinking about what characteristics got the user to click and incorporate those features into future ads.
+For example, a company may post 2 different pictures advertising the same product on their website. With an A/B test, we could look to measure if the picture used in the ad significantly impacted the number of users who clicked on the ad. If one ad yielded significantly more clicks, the business can use this data when thinking about what characteristics got the user to click and incorporate those features into future ads.
 
 <br>
 ### Hypothesis Testing
@@ -104,16 +120,17 @@ When performing any Hypothesis Test, the following must always be defined:
     * A *High p-value* (> 0.05) means your results could easily happen under random variation. We would fail to reject the null hypothesis, meaning there isn't enough evidence to prove a true association exists
 
 <br>
-#### Chi-Square Test For Independence
+#### Chi-Square Test of Independence
 
-The **Chi-Square Test For Independence** is a hypothesis test used to determine whether a significant association exists between two categorical variables. It compares the *observed frequencies* from the actual data points collected from a sample against the *expected frequencies*, the data expected to be seen if the two variables were truly independent.
+The **Chi-Square Test of Independence** is a hypothesis test used to determine whether a significant association exists between two categorical variables. It compares the *observed frequencies* from the actual data points collected from a sample against the *expected frequencies*, the data expected to be seen if the two variables were truly independent.
 
 The *Null Hypothesis* described above is our baseline assumption. It assumes that there is no relationship or difference between the two variables. It asserts that the observed frequencies of data will match the expected frequencies, with any minor difference being the result of random chance.
 
 The Chi-Square Contingency function provides a Chi-Square statistic that can be compared against a calculated *critical value*, in order to reject or fail to reject a null hypothesis.
 
-	* Chi-Square Statistic < Critical Value: We retain the null hypothesis - the observed results could easily happen under random variation.  meaning there isn't enough evidence to prove a true association exists between variables
-	* Chi-Square Statistic ≥ Critical Value: We reject the null hypothesis - the observed results are highly unlikely to have occurred by chance providing strong evidence that an association exists between variables
+    * Chi-Square Statistic < Critical Value: We retain the null hypothesis - the observed results could easily happen under random variation.  meaning there isn't enough evidence to prove a true association exists between variables
+
+    * Chi-Square Statistic ≥ Critical Value: We reject the null hypothesis - the observed results are highly unlikely to have occurred by chance providing strong evidence that an association exists between variables
 
 This function also provides a p-value, which can be compared to the chosen significance level (commonly set to 0.05). If the p-value is less than or equal to this significance level, the null hypothesis is rejected.
 
@@ -123,7 +140,7 @@ ___
 # Data Overview & Preparation  <a name="data-overview"></a>
 
 Our table of interest in the grocery client database is the *campaign_data* table. 
-This table contains each each unique customer_id, the type of mailer they received, if any, and whether or not the customer signed up for the Delivery Club membership.
+This table contains each unique customer_id, the type of mailer they received, if any, and whether or not the customer signed up for the Delivery Club membership.
 
 To determine whether the fancier Mailer 2 led to a significant difference of people to sign up as opposed to the cheaper Mailer 1, we will first need to exclude the control group from the data by extracting the customers who got either mailer.
 
@@ -166,7 +183,7 @@ In the **campaign_data** DataFrame we have the following columns:
 ___
 
 <br>
-# Applying Chi-Square Test For Independence <a name="chi-square-application"></a>
+# Applying Chi-Square Test of Independence <a name="chi-square-application"></a>
 
 
 #### State Hypotheses & Significance Level For Test
@@ -184,7 +201,7 @@ For our significance level, we'll be using the commonly used value of 0.05 (or 5
 
 As detailed in the *Concept Overview* section above, our **observed frequencies** come directly from the rates per group in our collected data. To get these frequencies, we'll create our 2x2 matrix needed for the Chi-Square approach, using a method called **`crosstab()`**. 
 
-Our observed values come directly from our campaign_data imported above. We are analyzing the impact that mailer_type had on member sign-up rates, so we'll want to pass these data points into the crosstab method.
+Our observed values come directly from our campaign_data imported above. We are analyzing the impact that mailer_type had on member signup rates, so we'll want to pass these data points into the crosstab method.
 
 We can visualize this data in the `DataFrame` below:
 ```python
@@ -241,11 +258,7 @@ print(critical_value)
 >> 3.84
 ```
 
-*Note: The chi2_contingency function accepts a correction parameter. By setting correction = False, we are setting our degrees of freedom to 1, applying Yate's Correction. This is necessary to define as we are comparing 2 group totals against their result in a 2x2 matrix*
-
-!!!
-*Note:* When applying the Chi-Square Test above, we use the parameter correction = False which means we are applying what is known as the Yate’s Correction which is applied when your Degrees of Freedom is equal to one. This correction helps to prevent overestimation of statistical significance in this case.
-!!!
+*Note: The chi2_contingency function accepts a correction parameter. By setting correction = False, we are applying Yate's Correction. This is necessary to define as we are comparing 2 group totals against their results in a 2x2 matrix*
 
 With that code in place, we have all of the values necessary to analyze the results, assess the null hypothesis, and draw a conclusion.
 
@@ -256,8 +269,8 @@ ___
 
 Based upon the raw observed values from the campaign, we can see that the signup rate for customers receiving Mailer 2 was higher than for the customers receiving Mailer 1:
 
-Mailer 1 (Low Cost): 32.8% signup rate
-Mailer 2 (High Cost): 37.8% signup rate
+Mailer 1 (low-cost): 32.8% signup rate
+Mailer 2 (high-cost): 37.8% signup rate
 
 The Chi-Square test gives us further insight into whether this difference in signup rate was truly due to the quality of the mailer, or just due to chance.
 
@@ -270,13 +283,12 @@ ___
 <br>
 # Discussion <a name="discussion"></a>
 
-While Mailer 2 yielded a higher sign-up rate than Mailer 1 (37.8% vs. 32.8%), the difference was not statistically significant at our 0.05 significance level. The results of the Chi-Square test of independence suggest that we cannot conclude the more expensive mailer had a true impact on whether a customer signed up.
+While Mailer 2 yielded a higher signup rate than Mailer 1 (37.8% vs. 32.8%), the difference was not statistically significant at our 0.05 significance level. The results of the Chi-Square test of independence reveal that we cannot yet conclude whether the more expensive mailer had a true impact on whether a customer signed up.
 
-At first glance, the client might look at the raw percentages and assume the premium quality of Mailer 2 drove the sign-ups. Without this hypothesis test, they may have considered sending exclusively the more expensive mailers for their next promotion—potentially wasting valuable funding.
+At first glance, the client might look at the raw percentages and assume the premium quality of Mailer 2 was the driving force behind the higher signup rate. Without this hypothesis test, they may have considered exclusively sending the more expensive mailers for their next promotion, potentially wasting valuable funding.
 
-However, because this analysis was limited to a small sample size from a single campaign, failing to reject the null hypothesis does not definitively prove that mailer quality makes no difference. It simply means we currently lack the evidence to prove that it does. Therefore, we advise the client not to jump to conclusions just yet. Running additional A/B tests over time will provide deeper insights; if future data consistently supports retaining the null hypothesis, we can then confidently recommend sticking to the cheaper mailers to optimize printing costs.
+It is important to note that this analysis was limited to a small sample size from a single campaign. *Failing to reject the null hypothesis does not definitively prove that mailer quality didn't impact signup rates, it simply means we currently lack the evidence to prove that it does.* Therefore, we advise the client not to jump to conclusions just yet. Running additional A/B tests over time will provide deeper insights. If future data consistently supports retaining the null hypothesis, we can then confidently recommend sticking to the cheaper mailers to optimize printing costs.
 
 !!!!
 *To Do*
-yate's correction
-Results & Discussion
+spell check 
