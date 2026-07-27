@@ -25,6 +25,7 @@ ___
 
 # Project Overview  <a name="overview-main"></a>
 
+<br>
 ### Context <a name="overview-context"></a>
 
 In late June, our client, a grocery retailer, ran a campaign to promote their new "Delivery Club" memberships. Signing up for the club costs $100 and gives customers free grocery deliveries for one year, starting June 1st.
@@ -81,7 +82,6 @@ Upgrading to the higher-cost mailer risks increasing spending without reliably d
 **Next Steps:**  
 As current findings do not support a permanent shift to higher-cost mailers, we advise running additional A/B tests with larger sample sizes to confirm whether a true performance gap exists or not.
 
-<br>
 ___
 
 # Concept Overview  <a name="concept-overview"></a>
@@ -181,7 +181,6 @@ In the **campaign_data** DataFrame we have the following columns:
 
 ___
 
-<br>
 # Applying Chi-Square Test of Independence <a name="chi-square-application"></a>
 
 <br>
