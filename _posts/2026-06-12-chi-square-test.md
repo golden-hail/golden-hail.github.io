@@ -66,20 +66,24 @@ The Chi-Square Test can be represented using a 2x2 data matrix, making the data 
 
 At a first glance of the observed data, it appears that the high-cost mailer yielded a higher signup rate:
 
+'''
 * Mailer 1 (low-cost): 32.8% signup rate
 * Mailer 2 (high-cost): 37.8% signup rate
+'''
 
 However, the results of the Chi-Square Test of Independence indicate otherwise:
 
+'''
 * Chi-Square Statistic: 1.94 < Critical Value: 3.84
 * p-value: 0.16 > Acceptance Criteria 0.05
+'''
 
 With these results, we retain the null hypothesis and conclude there is no measurable relationship between mailer cost and signup rates. This suggests that the 5% variation in signup rate could be due to random chance.
 
-**Business Impact:**  
+**<u>Business Impact:</u>**  
 Upgrading to the higher-cost mailer risks increasing spending without reliably driving additional revenue.
 
-**Next Steps:**  
+**<u>Next Steps:</u>**  
 As current findings do not support a permanent shift to higher-cost mailers, we advise running additional A/B tests with larger sample sizes to confirm whether a true performance gap exists or not.
 
 ___
@@ -128,9 +132,9 @@ The *Null Hypothesis* described above is our baseline assumption. It assumes tha
 
 The Chi-Square Contingency function provides a Chi-Square statistic that can be compared against a calculated *critical value*, in order to reject or fail to reject a null hypothesis.
 
-    * Chi-Square Statistic < Critical Value: We retain the null hypothesis - the observed results could easily happen under random variation.  meaning there isn't enough evidence to prove a true association exists between variables
+* Chi-Square Statistic < Critical Value: We retain the null hypothesis - the observed results could easily happen under random variation.  meaning there isn't enough evidence to prove a true association exists between variables
 
-    * Chi-Square Statistic ≥ Critical Value: We reject the null hypothesis - the observed results are highly unlikely to have occurred by chance providing strong evidence that an association exists between variables
+* Chi-Square Statistic ≥ Critical Value: We reject the null hypothesis - the observed results are highly unlikely to have occurred by chance providing strong evidence that an association exists between variables
 
 This function also provides a p-value, which can be compared to the chosen significance level (commonly set to 0.05). If the p-value is less than or equal to this significance level, the null hypothesis is rejected.
 
