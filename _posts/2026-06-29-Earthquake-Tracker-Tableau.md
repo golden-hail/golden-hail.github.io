@@ -9,25 +9,22 @@ This Tableau dashboard tracks global earthquake activity for a given data set of
 
 ___
 
-<div class="tableauPlaceholder" id="viz1785178798089" style="position: relative">
+<div class="tableauPlaceholder" id="viz1785185599814" style="position: relative;">
   <noscript>
     <a href="#">
       <img 
-        alt="DSI Earthquake Tracker " 
-        src="https://public.tableau.com/static/images/DS/DSIEarthquakeDashboard_17799776368700/DSIEarthquakeTracker/1_rss.png" 
-        style="border: none" 
+        alt="Earthquake Tracker" 
+        src="https://public.tableau.com/static/images/DJ/DJM658XPR/1_rss.png" 
+        style="border: none;" 
       />
     </a>
   </noscript>
-  
-  <object class="tableauViz" style="display:none;">
+  <object class="tableauViz" style="display: none;">
     <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
     <param name="embed_code_version" value="3" />
-    <param name="site_root" value="" />
-    <param name="name" value="DSIEarthquakeDashboard_17799776368700/DSIEarthquakeTracker" />
-    <param name="tabs" value="no" />
+    <param name="path" value="shared/DJM658XPR" />
     <param name="toolbar" value="yes" />
-    <param name="static_image" value="https://public.tableau.com/static/images/DS/DSIEarthquakeDashboard_17799776368700/DSIEarthquakeTracker/1.png" />
+    <param name="static_image" value="https://public.tableau.com/static/images/DJ/DJM658XPR/1.png" />
     <param name="animate_transition" value="yes" />
     <param name="display_static_image" value="yes" />
     <param name="display_spinner" value="yes" />
@@ -38,7 +35,7 @@ ___
 </div>
 
 <script type="text/javascript">
-  var divElement = document.getElementById('viz1785178798089');
+  var divElement = document.getElementById('viz1785185599814');
   var vizElement = divElement.getElementsByTagName('object')[0];
 
   if (divElement.offsetWidth > 800) {
@@ -58,6 +55,14 @@ ___
 </script>
 ___
 
+# **Data disclaimer**: This earthquake data in this dashboard is not realistic whatsoever. The frequency of high magnitude quakes are drastically exagerated to provide diverse datapoints to demonstrate data vizulization.
+
+# Fun Fact(s): 
+* The greatest magnitude of an earthquake recorded was in Chili in 1960 at a magnitude of 9.5. 
+* Earthquakes cannot exceed a magnitude of 10 because no tectonic fault line is long enough to produce one. A magnitude 10 earthquake would require a fault wrapping all the way around the equator
+* The USGS (United States Geological Survey) estimates an average of 16 major earthquakes per year, with a magnitude of 7.0 or higher 
+
 # to do!! 
-* upload image of dashboard for main page
+* fix viz
 * deeper description of what the dashboard entails
+* upload image of dashboard for main page
