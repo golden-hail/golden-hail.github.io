@@ -16,8 +16,8 @@ This interactive Tableau dashboard tracks global earthquake activity for a given
 ___
 
 <!-- Wrapper that allows horizontal scrolling on narrower GitHub Pages containers -->
-<div style="width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;">
-  <div class="tableauPlaceholder" id="viz1785185599814" style="position: relative; min-width: 1000px;">
+<div style="width: 100%; overflow-x: auto;">
+  <div class="tableauPlaceholder" id="viz1785185599814" style="position: relative; width: 1200px; min-width: 1200px;">
     <noscript>
       <a href="#">
         <img 
@@ -39,7 +39,6 @@ ___
       <param name="display_overlay" value="yes" />
       <param name="display_count" value="yes" />
       <param name="language" value="en-US" />
-      <!-- Forces Tableau to preserve desktop layout columns -->
       <param name="device" value="desktop" />
     </object>
   </div>
@@ -49,8 +48,8 @@ ___
   var divElement = document.getElementById('viz1785185599814');
   var vizElement = divElement.getElementsByTagName('object')[0];
 
-  vizElement.style.width = '100%';
-  vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px';
+  vizElement.style.width = '1200px';
+  vizElement.style.height = '900px';
 
   var scriptElement = document.createElement('script');
   scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
