@@ -25,17 +25,17 @@ without negatively impacting order total values.
 
 Engineering Angle: Focus on performance metrics, drop-off pipelines, and user behavioral flows.
 
-A $+18.92\%$ jump looks incredible on paper. But before an engineering or executive team spends money and resources updating the live site for 100% of users, they will ask: "How do we know this isn't just a 30-day random spike in traffic behavior?"
+Data at a glance (with Cart Conversion Rate (Checkout UI Efficiency))
+* Control Group: 40.21% of people who added items to their cart bought them.
+* Test Group: 59.13% of people who added items to their cart bought them.
+
+Conclusion so far: The new payment UI got significantly more people through checkout!
+
+An 18.92% jump looks incredible on paper. But before an engineering or executive team spends money and resources updating the live site for 100% of users, they will ask: "How do we know this isn't just a 30-day random spike in traffic behavior?"
 
 <br>
 
 ### Actions <a name="overview-actions"></a>
-
--data at a glance (with Cart Conversion Rate (Checkout UI Efficiency))
-    -Control: 40.21% of people who added items to their cart bought them.
-    -Test: 59.13% of people who added items to their cart bought them.
-
-Conclusion so far: The new payment UI got significantly more people through checkout!
 
 Average Order Value (AOV / Spend per Purchase):$$\frac{\text{Total Spend}}{\text{Total Purchases}}$$Control: $4.41 spent per purchase.Test: $4.92 spent per purchase.Conclusion so far: The new UI didn't hurt spending—users actually spent slightly more per transaction!
 
@@ -52,31 +52,31 @@ Step 4: Make the Business Recommendation (Phase 4)You summarize your findings in
 ___
 
 # Concept Overview  <a name="concept-overview"></a>
-<br>
+
 ### A/B Testing
 
 An A/B test takes two randomized groups, A and B, and provides them with different experiences. In the A/B test, we measure the response of each group to understand the impact each experience had on the response. These insights can help drive business decisions in the future.
 
-For example, a company may post 2 different pictures advertising the same product on their website. With an A/B test, we could look to measure if the picture used in the ad significantly impacted the number of users who clicked on the ad. If one ad yielded significantly more clicks, the business can use this data when thinking about what characteristics got the user to click and incorporate those features into future ads.
-
-<br>
 ### Hypothesis Testing
 
 
-
-<br>
 #### Z-Test for Proportions
 
 Why run the Z-Test for proportions here? Well, we have 2 sample sets each with a different experience (ie. the new or legacy UI). Since we want to see if there is a statistically significant difference between checkout/purchase rates between the control group who got the legacy experience and the  
+
+<br>
+
+#### Shapiro-Wilk
+
 
 ___
 
 # Data Overview & Preparation  <a name="data-overview"></a>
 
-Import 2 groups of data, control group with the original UI and the test group with the new UI. This data contains sales metrics on each unique day during the data collection.
+Import 2 groups of data, control group who used the legacy UI and the test group who used the new UI for their purchases. This data contains sales metrics on each unique day during the data collection (30 day period?).
 
+```python
 
-'''python
 import pandas as pd
 
 control = pd.read_csv('control_group.csv', sep = ';')
@@ -84,13 +84,38 @@ test = pd.read_csv('test_group.csv', sep = ';')
 
 control = control.dropna()
 test = test.dropna()
-'''
+```
 
-!!At a first glance, it seems the data...
-in the test group with the new UI, 59.128% committed to purchasing their carted items
-in the control group, with the legacy UI, 40.215% committed to buying their products 
+<br>
+Below is a 10 row sample of the control data. The control and test data sets both have the same columns
+<br>
 
+We have the following columns of interest in both datasets:
+* Date
+* Spend [USD]
+* # of Add to Cart
+* # of Purchase
 
+Before applying statistical analyses, let's look at the raw data to determine the conversion rates of items being put into carts to being purchased.
+
+```python
+ctrl_conversion_rate = round(control['# of Purchase'].sum() / control['# of Add to Cart'].sum() * 100, 3)
+test_conversion_rate = round(test['# of Purchase'].sum() / test['# of Add to Cart'].sum() * 100, 3)
+
+print(f'Control Group Conversion Rate = {ctrl_conversion_rate}%')
+print(f'Test Group Conversion Rate = {test_conversion_rate}%')
+
+>> Control Group Conversion Rate = 40.215%
+>> Test Group Conversion Rate = 59.128%
+```
+
+In the test group of users beta testing the new UI, 59.128% of items put into carts were later purchased. In the control group, with the legacy UI, 40.215% of products from carts were purchased. 
+
+At a first glance, it seems the new payment UI got significantly more people through checkout!
+
+An 18.92% jump looks incredible on paper. But before an engineering or executive team spends money and resources updating the live site for 100% of users, they will ask: "How do we know this isn't just a 30-day random spike in traffic behavior?" (???For the same time frame.. might need a different sus factor.. should I also do a spent per purchase comparison here????)
+
+??? Show a sample of the raw data table like I did in the Chi2 test
 ___
 
 # Applying the Z-Test for Proportions <a name="Z-test-application"></a>
@@ -113,7 +138,7 @@ For our significance level, we'll be using the commonly used value of 0.05 (or 5
 
 For Conversion Rate..
 
-'''python
+```python
 import numpy as np
 from statsmodels.stats.proportion import proportions_ztest
 
@@ -126,7 +151,7 @@ z_stat, p_val = proportions_ztest(
 
 print(f"Z-statistic: {z_stat:.4f}")
 print(f"p-value:     {p_val}")
-'''
+```
 
 Z-statistic: 47.1959
 p-value:     0.0
@@ -142,6 +167,16 @@ ___
 
 # Applying Shapiro-Wilk to Assess for Data Normality
 
+```python
+from scipy import stats
+
+stat_ctrl, p_ctrl = stats.shapiro(control["Spend [USD]"])
+stat_test, p_test = stats.shapiro(test["Spend [USD]"])
+
+print(f"Control Spend - W Stat: {stat_ctrl:.4f}, p-value: {p_ctrl:.4f}")
+print(f"Test Spend    - W Stat: {stat_test:.4f}, p-value: {p_test:.4f}")
+
+```
 
 # Applying T-Test (With Plot)
 
