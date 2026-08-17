@@ -44,7 +44,7 @@
 								<li class="item"><a class="item-link"><i class="ion ion-ios-pin"></i> Massachusetts, US</a></li>
 								<li class="item"><a class="item-link" href="https://github.com/golden-hail/golden-hail.github.io"><i class="ion ion-logo-github"></i> Github</a></li>
 								<li class="item"><a class="item-link" href="https://linkedln.com/antonia-iaquinta/"><i class="ion ion-logo-linkedin"></i> LinkedIn</a></li>
-								<li class="item"><a class="item-link" href="/docs/resume.docx"><i class="ion ion-ios-document"></i> Resume</a></li>
+								<li class="item"><a class="item-link" href="/docs/antonia_iaquinta_resume.docx"><i class="ion ion-ios-document"></i> Resume</a></li>
 							</ul>
 						</div>
 					</div>
@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <div class="post-body">
-                    <p>In this project, we’ll be running an A/B test on grocery retailer campaign data to determine if the quality of promotion mail sent to customers significantly impacted who signed up for a promoted membership.</p>
+                    <p>In this project, we’ll be running an A/B test on grocery retailer campaign data to determine if the quality of the promotion mail sent to customers significantly impacted signup rates for a promoted membership.</p>
 
 <p>We will do this through applying the Chi-Square Test of Independence to measure the significance of the difference in signups between 2 groups of customers.</p>
 
@@ -242,7 +242,7 @@ As current findings do not support a permanent shift to higher-cost mailers, we 
 
 <ul>
   <li>
-    <p>Chi-Square Statistic &lt; Critical Value: We retain the null hypothesis - the observed results could easily happen under random variation.  meaning there isn’t enough evidence to prove a true association exists between variables</p>
+    <p>Chi-Square Statistic &lt; Critical Value: We retain the null hypothesis - the observed results could easily happen under random variation, meaning there isn’t enough evidence to prove a true association exists between variables</p>
   </li>
   <li>
     <p>Chi-Square Statistic ≥ Critical Value: We reject the null hypothesis - the observed results are highly unlikely to have occurred by chance providing strong evidence that an association exists between variables</p>
@@ -451,7 +451,7 @@ Below is a 10 row sample of the imported <strong>campaign_data</strong> DataFram
 
 <p><em>Note: The chi2_contingency function accepts a correction parameter. By setting correction = False, we are applying Yate’s Correction. This is necessary to define as we are comparing 2 group totals against their results in a 2x2 matrix</em></p>
 
-<p>With that code in place, we have all of the values necessary to analyze the results, assess the null hypothesis, and draw a conclusion.</p>
+<p>With that code in place, we have all of the values necessary to analyze the results for our A/B test and draw a conclusion.</p>
 
 <hr />
 
@@ -459,8 +459,10 @@ Below is a 10 row sample of the imported <strong>campaign_data</strong> DataFram
 
 <p>Based upon the raw observed values from the campaign, we can see that the signup rate for customers receiving Mailer 2 was higher than for the customers receiving Mailer 1:</p>
 
-<p>Mailer 1 (low-cost): 32.8% signup rate
-Mailer 2 (high-cost): 37.8% signup rate</p>
+<ul>
+  <li>Mailer 1 (low-cost): 32.8% signup rate</li>
+  <li>Mailer 2 (high-cost): 37.8% signup rate</li>
+</ul>
 
 <p>The Chi-Square test gives us further insight into whether this difference in signup rate was truly due to the quality of the mailer, or just due to chance.</p>
 
@@ -490,7 +492,7 @@ Mailer 2 (high-cost): 37.8% signup rate</p>
                     </a>
                     
                     
-                    <a href="#" class="next disabled">
+                    <a href="/2026/08/01/E-Commerce-AB-Test.html" class="next">
                         <div class="post-nav-arrow">Next <i class="ion ion-ios-arrow-round-forward"></i></div>
                     </a>
                     
