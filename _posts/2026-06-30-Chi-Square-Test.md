@@ -5,7 +5,7 @@ image: "/posts/AB_testing.jpg"
 tags: [AB Testing, Hypothesis Testing, Chi-Square, Python]
 ---
 
-In this project, we'll be running an A/B test on grocery retailer campaign data to determine if the quality of promotion mail sent to customers significantly impacted who signed up for a promoted membership. 
+In this project, we'll be running an A/B test on grocery retailer campaign data to determine if the quality of the promotion mail sent to customers significantly impacted signup rates for a promoted membership. 
 
 We will do this through applying the Chi-Square Test of Independence to measure the significance of the difference in signups between 2 groups of customers.
 
@@ -128,7 +128,7 @@ The *Null Hypothesis* described above is our baseline assumption. It assumes tha
 
 The Chi-Square Contingency function provides a Chi-Square statistic that can be compared against a calculated *critical value*, in order to reject or fail to reject a null hypothesis.
 
-* Chi-Square Statistic < Critical Value: We retain the null hypothesis - the observed results could easily happen under random variation.  meaning there isn't enough evidence to prove a true association exists between variables
+* Chi-Square Statistic < Critical Value: We retain the null hypothesis - the observed results could easily happen under random variation, meaning there isn't enough evidence to prove a true association exists between variables
 
 * Chi-Square Statistic ≥ Critical Value: We reject the null hypothesis - the observed results are highly unlikely to have occurred by chance providing strong evidence that an association exists between variables
 
@@ -259,7 +259,7 @@ print(critical_value)
 
 *Note: The chi2_contingency function accepts a correction parameter. By setting correction = False, we are applying Yate's Correction. This is necessary to define as we are comparing 2 group totals against their results in a 2x2 matrix*
 
-With that code in place, we have all of the values necessary to analyze the results, assess the null hypothesis, and draw a conclusion.
+With that code in place, we have all of the values necessary to analyze the results for our A/B test and draw a conclusion.
 
 ___
 
@@ -267,8 +267,8 @@ ___
 
 Based upon the raw observed values from the campaign, we can see that the signup rate for customers receiving Mailer 2 was higher than for the customers receiving Mailer 1:
 
-Mailer 1 (low-cost): 32.8% signup rate
-Mailer 2 (high-cost): 37.8% signup rate
+* Mailer 1 (low-cost): 32.8% signup rate
+* Mailer 2 (high-cost): 37.8% signup rate
 
 The Chi-Square test gives us further insight into whether this difference in signup rate was truly due to the quality of the mailer, or just due to chance.
 
