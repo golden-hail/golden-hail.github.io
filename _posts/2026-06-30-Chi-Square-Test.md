@@ -5,7 +5,7 @@ image: "/posts/AB_testing.jpg"
 tags: [AB Testing, Hypothesis Testing, Chi-Square, Python]
 ---
 
-In this project, we'll be running an A/B test on grocery retailer campaign data to determine if the quality of the promotion mail sent to customers significantly impacted signup rates for a promoted membership. 
+In this project, we'll be running an A/B test on grocery retailer campaign data to determine if the quality of the promotion mail sent to customers significantly impacted signup rates for a promoted "Delivery Club" membership. 
 
 We will do this through applying the Chi-Square Test of Independence to measure the significance of the difference in signups between 2 groups of customers.
 
@@ -28,7 +28,7 @@ ___
 <br>
 ### Context <a name="overview-context"></a>
 
-In late June, our client, a grocery retailer, ran a campaign to promote their new "Delivery Club" memberships. Signing up for the club costs $100 and gives customers free grocery deliveries for one year, starting June 1st.
+In late June our client, a grocery retailer, ran a campaign to promote their new "Delivery Club" memberships. Signing up for the club costs $100 and gives customers free grocery deliveries for one year, starting June 1st.
 
 For the campaign promoting the club, customers were put randomly into three groups: 
 * The first group received a bland, low cost mailer, Mailer 1.

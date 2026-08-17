@@ -1,6 +1,6 @@
 ---
 layout: post
-title: E-Commerce Checkout Redesign A/B Test Analysis
+title: Customer Checkout UI Redesign A/B Test Analysis
 image: "/posts/checkout_UI.jpg"
 tags: [AB Testing, Hypothesis Testing, Z-Test, Shapiro-Wilk, Mann-Whitney U, Python]
 ---
