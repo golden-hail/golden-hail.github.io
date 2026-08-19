@@ -22,7 +22,7 @@ avatar_image: /img/my_headshot.jpg
 
 #-------------------------------
 # Contact links
-linkedln: "https://linkedln.com/antonia-iaquinta/" # Add your linkedln handle
+linkedin: "https://www.linkedin.com/in/antonia-iaquinta/" # Add your linkedln handle
 github: "https://github.com/golden-hail/golden-hail.github.io"  # Add your github handle
 
 paginate: 6
