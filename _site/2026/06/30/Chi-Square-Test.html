@@ -123,7 +123,7 @@
 <p><br /></p>
 <h3 id="context-">Context <a name="overview-context"></a></h3>
 
-<p>In late June our client, a grocery retailer, ran a campaign to promote their new “Delivery Club” memberships. Signing up for the club costs $100 and gives customers free grocery deliveries for one year, starting June 1st.</p>
+<p>In June, a grocery retailer client ran a campaign to promote their new “Delivery Club” memberships. Signing up for the club costs $100 and gives customers free grocery deliveries for one year, starting July 1st.</p>
 
 <p>For the campaign promoting the club, customers were put randomly into three groups:</p>
 <ul>
@@ -138,9 +138,11 @@
 
 <h3 id="actions-">Actions <a name="overview-actions"></a></h3>
 
-<p>The Chi-Square Test of Independence will be applied to compare the <strong>signup rates</strong> of two distinct groups from our <em>campaign_data</em> client database:
-    * customers who received low cost <strong>Mailer1</strong> 
-    * customers who received the higher quality, high cost <strong>Mailer2</strong>.</p>
+<p>The Chi-Square Test of Independence will be applied to compare the <strong>signup rates</strong> of two distinct groups from our <em>campaign_data</em> client database:</p>
+<ul>
+  <li>Customers who received low cost <strong>Mailer1</strong></li>
+  <li>Customers who received the higher quality, high cost <strong>Mailer2</strong>.</li>
+</ul>
 
 <p>The Hypothesis Test elements are defined as:</p>
 <ul>
@@ -171,8 +173,8 @@
 
 <p>However, the results of the Chi-Square Test of Independence indicate otherwise:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>* Chi-Square Statistic: 1.94 &lt; Critical Value: 3.84
-* p-value: 0.16 &gt; Acceptance Criteria 0.05
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>* Chi-Square Statistic: 1.72 &lt; Critical Value: 3.84
+* p-value: 0.19 &gt; Acceptance Criteria 0.05
 </code></pre></div></div>
 
 <p>With these results, we retain the null hypothesis and conclude there is no measurable relationship between mailer cost and signup rates. This suggests that the 5% variation in signup rate could be due to random chance.</p>
@@ -189,14 +191,14 @@ As current findings do not support a permanent shift to higher-cost mailers, we 
 <p><br /></p>
 <h3 id="ab-testing">A/B Testing</h3>
 
-<p>An A/B test takes two randomized groups, A and B, and provides them with different experiences. In the A/B test, we measure the response of each group to understand the impact each experience had on the response. These insights can help drive business decisions in the future.</p>
+<p>An A/B test takes two randomized groups, A and B, and provides them with different experiences. In the A/B test, we measure the response of both groups to understand the impact each experience had on the response.</p>
 
 <p>For example, a company may post 2 different pictures advertising the same product on their website. With an A/B test, we could look to measure if the picture used in the ad significantly impacted the number of users who clicked on the ad. If one ad yielded significantly more clicks, the business can use this data when thinking about what characteristics got the user to click and incorporate those features into future ads.</p>
 
 <p><br /></p>
 <h3 id="hypothesis-testing">Hypothesis Testing</h3>
 
-<p>A Hypothesis Test is a statistical method used to evaluate the likelihood of an assumption on a population, using sample data. It determines whether an observed pattern or correlation in the data is due to a true relationship or due to random chance.</p>
+<p>A Hypothesis Test is a statistical method used to evaluate the likelihood of an assumption on a population, using sample data. It determines whether an observed pattern or correlation in the data is due to a true relationship or random chance.</p>
 
 <p>There are multiple types of Hypothesis Tests as well as many scenarios we can run them on.</p>
 
@@ -222,7 +224,7 @@ As current findings do not support a permanent shift to higher-cost mailers, we 
 
     <ul>
       <li>
-        <p>A <em>low p-value</em> (≤ 0.05) suggests your results are highly unlikely to have occurred by chance. There is strong evidence to reject the null hypothesis.</p>
+        <p>A <em>low p-value</em> (≤ 0.05) suggests your results are highly unlikely to have occurred by chance. There is strong evidence to reject the null hypothesis as the relationship is statistically significant</p>
       </li>
       <li>
         <p>A <em>High p-value</em> (&gt; 0.05) means your results could easily happen under random variation. We would fail to reject the null hypothesis, meaning there isn’t enough evidence to prove a true association exists</p>
@@ -377,13 +379,13 @@ Below is a 10 row sample of the imported <strong>campaign_data</strong> DataFram
 <ul>
   <li>null_hypothesis: There is no relationship between mailer type and signup rate. They are independent.</li>
   <li>alternate_hypothesis: There is a relationship between mailer type and signup rate. They are not independent.</li>
-  <li>acceptance_criteria: 0.05</li>
+  <li>significance_level: 0.05</li>
 </ul>
 
 <p><br /></p>
 <h4 id="calculate-observed-frequencies--expected-frequencies">Calculate Observed Frequencies &amp; Expected Frequencies</h4>
 
-<p>As detailed in the <em>Concept Overview</em> section above, our <strong>observed frequencies</strong> come directly from the rates per group in our collected data. To get these frequencies, we’ll create our 2x2 matrix needed for the Chi-Square approach, using a method called <strong><code class="language-plaintext highlighter-rouge">crosstab()</code></strong>.</p>
+<p>As detailed in the <em>Concept Overview</em> section above, the <strong>observed frequencies</strong> come directly from the rates per group in our collected data. To get these frequencies, we’ll create our 2x2 matrix needed for the Chi-Square approach, using a method called <strong><code class="language-plaintext highlighter-rouge">crosstab()</code></strong>.</p>
 
 <p>Our observed values come directly from our campaign_data imported above. We are analyzing the impact that mailer_type had on member signup rates, so we’ll want to pass these data points into the crosstab method.</p>
 
@@ -434,22 +436,22 @@ Below is a 10 row sample of the imported <strong>campaign_data</strong> DataFram
 <p>We can additionally test the null hypothesis by finding the <em>critical value</em> along our Chi-Squared distribution based on our set significance level and our calculated dof, using the <code class="language-plaintext highlighter-rouge">chi2.ppf</code> percentage point function from the scipy library.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># run the chi-square test
-</span><span class="n">chi2_statistic</span><span class="p">,</span> <span class="n">p_value</span><span class="p">,</span> <span class="n">dof</span><span class="p">,</span> <span class="n">expected_values</span> <span class="o">=</span> <span class="n">chi2_contingency</span><span class="p">(</span><span class="n">observed_values</span><span class="p">,</span> <span class="n">correction</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+</span><span class="n">chi2_statistic</span><span class="p">,</span> <span class="n">p_value</span><span class="p">,</span> <span class="n">dof</span><span class="p">,</span> <span class="n">expected_values</span> <span class="o">=</span> <span class="n">chi2_contingency</span><span class="p">(</span><span class="n">observed_values</span><span class="p">,</span> <span class="n">correction</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">chi2_statistic</span><span class="p">)</span>
-<span class="o">&gt;&gt;</span> <span class="mf">1.94</span>
+<span class="o">&gt;&gt;</span> <span class="mf">1.72</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">p_value</span><span class="p">)</span>
-<span class="o">&gt;&gt;</span> <span class="mf">0.16</span>
+<span class="o">&gt;&gt;</span> <span class="mf">0.19</span>
 
 <span class="c1"># find the critical value for our test using chi2.ppf
-</span><span class="n">critical_value</span> <span class="o">=</span> <span class="n">chi2</span><span class="p">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">acceptance_criteria</span><span class="p">,</span> <span class="n">dof</span><span class="p">)</span>
+</span><span class="n">critical_value</span> <span class="o">=</span> <span class="n">chi2</span><span class="p">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">significance</span> <span class="n">level</span><span class="p">,</span> <span class="n">dof</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">critical_value</span><span class="p">)</span>
 <span class="o">&gt;&gt;</span> <span class="mf">3.84</span>
 </code></pre></div></div>
 
-<p><em>Note: The chi2_contingency function accepts a correction parameter. By setting correction = False, we are applying Yate’s Correction. This is necessary to define as we are comparing 2 group totals against their results in a 2x2 matrix</em></p>
+<p><em>Note: The chi2_contingency function accepts a correction parameter. By setting correction = True, we are applying Yate’s Correction, which is applicable when comparing 2 group totals against their results in a 2x2 matrix</em></p>
 
 <p>With that code in place, we have all of the values necessary to analyze the results for our A/B test and draw a conclusion.</p>
 
@@ -466,9 +468,9 @@ Below is a 10 row sample of the imported <strong>campaign_data</strong> DataFram
 
 <p>The Chi-Square test gives us further insight into whether this difference in signup rate was truly due to the quality of the mailer, or just due to chance.</p>
 
-<p>Our calculated p-value of 0.16 is greater than our set significance level of 0.05, meaning that <strong>the difference in signup outcomes between the two mailing groups is not significant.</strong></p>
+<p>Our calculated p-value of 0.19 is greater than our set significance level of 0.05, meaning that <strong>the difference in signup outcomes between the two mailing groups is not significant.</strong></p>
 
-<p>This conclusion is further supported by our Chi-Square statistic of 1.94 being lower than the calculated critical value of 3.84. In both cases, we <strong>retain the null hypothesis</strong> as there is not enough evidence that the signup rates for Mailer 1 and Mailer 2 were significantly different.</p>
+<p>This conclusion is further supported by our Chi-Square statistic of 1.72 being lower than the calculated critical value of 3.84. In both cases, we <strong>retain the null hypothesis</strong> as there is not enough evidence that the signup rates for Mailer 1 and Mailer 2 were significantly different.</p>
 
 <hr />
 

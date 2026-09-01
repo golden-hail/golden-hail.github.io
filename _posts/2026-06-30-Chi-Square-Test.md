@@ -28,7 +28,7 @@ ___
 <br>
 ### Context <a name="overview-context"></a>
 
-In late June our client, a grocery retailer, ran a campaign to promote their new "Delivery Club" memberships. Signing up for the club costs $100 and gives customers free grocery deliveries for one year, starting June 1st.
+In June, a grocery retailer client ran a campaign to promote their new "Delivery Club" memberships. Signing up for the club costs $100 and gives customers free grocery deliveries for one year, starting July 1st.
 
 For the campaign promoting the club, customers were put randomly into three groups: 
 * The first group received a bland, low cost mailer, Mailer 1.
@@ -42,8 +42,8 @@ The client knows that customers who were contacted, signed up for the Delivery C
 ### Actions <a name="overview-actions"></a>
 
 The Chi-Square Test of Independence will be applied to compare the **signup rates** of two distinct groups from our *campaign_data* client database:
-    * customers who received low cost **Mailer1** 
-    * customers who received the higher quality, high cost **Mailer2**.
+* Customers who received low cost **Mailer1** 
+* Customers who received the higher quality, high cost **Mailer2**.
 
 The Hypothesis Test elements are defined as:  
 * **Null Hypothesis:** There is no relationship between mailer type and signup rate. They are independent variables and any difference in signup rates are due to chance.  
@@ -71,8 +71,8 @@ At a first glance of the observed data, it appears that the high-cost mailer yie
 
 However, the results of the Chi-Square Test of Independence indicate otherwise:
 
-    * Chi-Square Statistic: 1.94 < Critical Value: 3.84
-    * p-value: 0.16 > Acceptance Criteria 0.05
+    * Chi-Square Statistic: 1.72 < Critical Value: 3.84
+    * p-value: 0.19 > Acceptance Criteria 0.05
 
 With these results, we retain the null hypothesis and conclude there is no measurable relationship between mailer cost and signup rates. This suggests that the 5% variation in signup rate could be due to random chance.
 
@@ -88,14 +88,14 @@ ___
 <br>
 ### A/B Testing
 
-An A/B test takes two randomized groups, A and B, and provides them with different experiences. In the A/B test, we measure the response of each group to understand the impact each experience had on the response. These insights can help drive business decisions in the future.
+An A/B test takes two randomized groups, A and B, and provides them with different experiences. In the A/B test, we measure the response of both groups to understand the impact each experience had on the response. 
 
 For example, a company may post 2 different pictures advertising the same product on their website. With an A/B test, we could look to measure if the picture used in the ad significantly impacted the number of users who clicked on the ad. If one ad yielded significantly more clicks, the business can use this data when thinking about what characteristics got the user to click and incorporate those features into future ads.
 
 <br>
 ### Hypothesis Testing
 
-A Hypothesis Test is a statistical method used to evaluate the likelihood of an assumption on a population, using sample data. It determines whether an observed pattern or correlation in the data is due to a true relationship or due to random chance.
+A Hypothesis Test is a statistical method used to evaluate the likelihood of an assumption on a population, using sample data. It determines whether an observed pattern or correlation in the data is due to a true relationship or random chance.
 
 There are multiple types of Hypothesis Tests as well as many scenarios we can run them on. 
 
@@ -115,7 +115,7 @@ When performing any Hypothesis Test, the following must always be defined:
 
     A *p-value*, or probability value, is a calculated value used to determine if the data is extreme enough to reject the null hypothesis. It is a common practice to set the significance level to 0.05 or 5%.
 
-    * A *low p-value* (≤ 0.05) suggests your results are highly unlikely to have occurred by chance. There is strong evidence to reject the null hypothesis.
+    * A *low p-value* (≤ 0.05) suggests your results are highly unlikely to have occurred by chance. There is strong evidence to reject the null hypothesis as the relationship is statistically significant
 
     * A *High p-value* (> 0.05) means your results could easily happen under random variation. We would fail to reject the null hypothesis, meaning there isn't enough evidence to prove a true association exists
 
@@ -193,12 +193,12 @@ For our significance level, we'll be using the commonly used value of 0.05 (or 5
 
 * null_hypothesis: There is no relationship between mailer type and signup rate. They are independent.
 * alternate_hypothesis: There is a relationship between mailer type and signup rate. They are not independent.
-* acceptance_criteria: 0.05
+* significance_level: 0.05
 
 <br>
 #### Calculate Observed Frequencies & Expected Frequencies
 
-As detailed in the *Concept Overview* section above, our **observed frequencies** come directly from the rates per group in our collected data. To get these frequencies, we'll create our 2x2 matrix needed for the Chi-Square approach, using a method called **`crosstab()`**. 
+As detailed in the *Concept Overview* section above, the **observed frequencies** come directly from the rates per group in our collected data. To get these frequencies, we'll create our 2x2 matrix needed for the Chi-Square approach, using a method called **`crosstab()`**. 
 
 Our observed values come directly from our campaign_data imported above. We are analyzing the impact that mailer_type had on member signup rates, so we'll want to pass these data points into the crosstab method.
 
@@ -242,22 +242,22 @@ We can additionally test the null hypothesis by finding the *critical value* alo
 
 ```python
 # run the chi-square test
-chi2_statistic, p_value, dof, expected_values = chi2_contingency(observed_values, correction = False)
+chi2_statistic, p_value, dof, expected_values = chi2_contingency(observed_values, correction = True)
 
 print(chi2_statistic)
->> 1.94
+>> 1.72
 
 print(p_value)
->> 0.16
+>> 0.19
 
 # find the critical value for our test using chi2.ppf
-critical_value = chi2.ppf(1 - acceptance_criteria, dof)
+critical_value = chi2.ppf(1 - significance level, dof)
 
 print(critical_value)
 >> 3.84
 ```
 
-*Note: The chi2_contingency function accepts a correction parameter. By setting correction = False, we are applying Yate's Correction. This is necessary to define as we are comparing 2 group totals against their results in a 2x2 matrix*
+*Note: The chi2_contingency function accepts a correction parameter. By setting correction = True, we are applying Yate's Correction, which is applicable when comparing 2 group totals against their results in a 2x2 matrix*
 
 With that code in place, we have all of the values necessary to analyze the results for our A/B test and draw a conclusion.
 
@@ -272,9 +272,9 @@ Based upon the raw observed values from the campaign, we can see that the signup
 
 The Chi-Square test gives us further insight into whether this difference in signup rate was truly due to the quality of the mailer, or just due to chance.
 
-Our calculated p-value of 0.16 is greater than our set significance level of 0.05, meaning that **the difference in signup outcomes between the two mailing groups is not significant.** 
+Our calculated p-value of 0.19 is greater than our set significance level of 0.05, meaning that **the difference in signup outcomes between the two mailing groups is not significant.** 
 
-This conclusion is further supported by our Chi-Square statistic of 1.94 being lower than the calculated critical value of 3.84. In both cases, we **retain the null hypothesis** as there is not enough evidence that the signup rates for Mailer 1 and Mailer 2 were significantly different.
+This conclusion is further supported by our Chi-Square statistic of 1.72 being lower than the calculated critical value of 3.84. In both cases, we **retain the null hypothesis** as there is not enough evidence that the signup rates for Mailer 1 and Mailer 2 were significantly different.
 
 ___
 
