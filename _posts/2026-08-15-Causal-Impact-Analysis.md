@@ -18,7 +18,7 @@ ___
 - [01. Concept Overview](#concept-overview)
 - [02. Data Overview & Preparation](#data-overview)
 - [03. Applying Causal Impact Analysis](#causal-impact)
-- [04. Analyzing The Results](#analyzing_results)
+- [04. Analyzing The Results](#analyzing-results)
 - [05. Discussion](#discussion)
 
 ___
@@ -28,7 +28,7 @@ ___
 
 ### Context <a name="overview-context"></a>
 
-In late June, a grocery retailer promoted their new “Delivery Club” membership campaign. For a $100 annual fee, members receive unlimited free grocery deliveries for an entire year, starting July 1st. Having previously evaluated the impact of campaign mailers on signup rates using a [Chi-Square Test of Independence](https://golden-hail.github.io/2026/06/30/Chi-Square-Test.html), leadership now needs to quantify the financial impact of the program. Specifically, the client wants to determine whether customers who signed up for the Delivery Club increased their spending in the months following the launch—and by how much.
+In late June, a grocery retailer promoted their new “Delivery Club” membership campaign. For a $100 annual fee, members receive unlimited free grocery deliveries for an entire year, starting July 1st. Having previously evaluated the impact of campaign mailers on signup rates using a [Chi-Square Test of Independence](https://golden-hail.github.io/2026/06/30/Chi-Square-Test.html), leadership now needs to quantify the financial impact of the program. Specifically, the client wants to determine whether customers who signed up for the Delivery Club increased their spending in the months following the launch and by how much.
 
 **Our core business hypothesis is that waiving delivery fees removes purchasing friction, encouraging Delivery Club members to shop more frequently and spend more per order over time.** To measure this, we leverage a counterfactual framework using non-member spending behavior. Customers who chose not to sign up *should* in theory continue their normal shopping habits after July 1st. By calculating average daily sales for this non-member control group, we can establish a reliable baseline prediction of what Delivery Club members *would have spent* if the program had never existed.
 
@@ -39,7 +39,7 @@ Ultimately, our primary objective is to evaluate average daily spend across both
 ### Actions <a name="overview-actions"></a>
 
 * **Environment & Data Setup:** Import required analytical libraries (`causalimpact`, `pandas`). Load raw transaction and campaign datasets.
-* **Data Integration & Aggregation:** Merge customer transactions with campaign metadata on `customer_id` and aggregate daily spend into a unified customer time-series DataFrame.
+* **Data Integration & Aggregation:** Merge customer transactions with campaign metadata on `customer_id` and aggregate daily spend into a unified customer timeseries DataFrame.
 * **Format Model Matrix:** Pivot data to generate mean daily spend by group (`signup_flag`), explicitly ordering the treatment group (Delivery Club members) into the first column and non-members into the second.
 * **Define Evaluation Windows:** Set explicit date boundaries for the pre-intervention baseline period (`2020-04-01` to `2020-06-30`) and post-intervention assessment window (`2020-07-01` to `2020-09-30`).
 * **Model Execution:** Run the `CausalImpact` algorithm to generate a counterfactual baseline and calculate 95% Bayesian confidence intervals.
@@ -81,15 +81,15 @@ In the example plot image above, the following key components are represented:
 To run the analysis via the Python `causalimpact` package, input data must be structured as follows:
 * **Time Index:** A DataFrame indexed by datetime.
 * **Target Variable (Column 1):** The response metric being evaluated (example: daily spend for the treatment group).
-* **Control Variables (Columns 2+):** One or more time-series metrics unaffected by the **intervention** used by the model to reconstruct the counterfactual baseline.
+* **Control Variables (Columns 2+):** One or more time series metrics unaffected by the **intervention** used by the model to reconstruct the counterfactual baseline.
 
-***Performance Note for Large Datasets (`tfcausalimpact`):** For multi-year or high-frequency datasets, the standard Python package can run slowly. Installing `tfcausalimpact` optimizes execution by translating your DataFrame into TensorFlow Probability structures (`tfp.sts`) to drastically accelerate Bayesian computations and avoid deprecation warnings.*
+***Performance Note for Large Datasets (`tfcausalimpact`):** For multi-year or high-frequency datasets, `causalimpact` can run slowly. Installing `tfcausalimpact` optimizes execution by translating your DataFrame into TensorFlow Probability structures (`tfp.sts`) to drastically accelerate Bayesian computations and avoid deprecation warnings.*
 
 <br>
 
 ### Why Use Causal Impact Analysis?
 
-Causal Impact Analysis automatically accounts for trend shifts, seasonality (e.g., weekends vs. weekdays), and historical patterns using Bayesian structural time-series models. It also quantifies uncertainty by outputting probabilistic confidence intervals alongside point estimates to make risk and impact clearly measurable.
+Causal Impact Analysis automatically accounts for trend shifts, seasonality, and historical patterns using Bayesian structural time series models. It also quantifies uncertainty by outputting probabilistic confidence intervals alongside point estimates to make risk and impact clearly measurable.
 
 ___
 
@@ -114,7 +114,7 @@ transactions = pd.read_excel('data/grocery_database.xlsx', sheet_name = 'transac
 campaign_data = pd.read_excel('data/grocery_database.xlsx', sheet_name = 'campaign_data')
 ```
 
-Because the *transactions* table tracks data from April through September, daily sales serves as the appropriate time-series metric. We group the data by `customer_id` and `transaction_date` to aggregate individual daily spending into a new DataFrame: `customer_daily_sales`. Retaining `customer_id` at this stage allows us to successfully merge the aggregated sales numbers with our *campaign_data* table.
+Because the *transactions* table tracks data from April through September, daily sales serves as the appropriate time series metric. We group the data by `customer_id` and `transaction_date` to aggregate individual daily spending into a new DataFrame: `customer_daily_sales`. Retaining `customer_id` at this stage allows us to successfully merge the aggregated sales numbers with our *campaign_data* table.
 
 ```python
 # Aggregate sales cost per customer per day
