@@ -9,8 +9,7 @@ plugins:
 #-------------------------------
 # General Site Settings
 title: Antonia Iaquinta
-description: "Hi I'm Tonii, an engineer by trade, looking to pivot my career into data science and analytics! My portfolio contains interesting projects I've recently undertaken, with a strong emphasis on business impact. Please visit my Github & LinkedIn pages (or download my Resume) by using the links below!"
-baseurl: "" # the subpath of your site, e.g. /blog
+description: "Hi, I'm Tonii! A Data Analyst bringing 7 years of defense systems engineering rigor to business applications. Driven by a deep curiosity for how complex systems work, I focus on validating data integrity before using it to drive decisions. My portfolio contains interesting projects I've recently undertaken, with a strong emphasis on business impact. Please visit my Github & LinkedIn pages (or download my Resume) by using the links below!"
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 #-------------------------------
