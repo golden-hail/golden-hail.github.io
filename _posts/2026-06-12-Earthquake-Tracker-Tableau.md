@@ -7,7 +7,7 @@ tags: [Tableau, Data Viz]
 
 This interactive Tableau dashboard tracks global earthquake activity for a given data set of a 30-day period.
 
-***NOTE:** Due to formatting troubles between Tableau, Ruby, and git-pages, it is recommended to view the dashboard on Tableau Public itself by clicking "View on Tableau Public" on the bottom left of the dashboard below.*
+> ***NOTE:** Due to formatting troubles between Tableau, Ruby, and git-pages, it is recommended to view this dashboard on Tableau Public itself by clicking "View on Tableau Public" on the bottom left of the dashboard below.*
 
 * Take in the overall data summary for earthquakes over a 30-day period. 
 * See the frequency of earthquakes in each location as well as the average and maximum magnitude

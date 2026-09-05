@@ -128,9 +128,9 @@ The *Null Hypothesis* described above is our baseline assumption. It assumes tha
 
 The Chi-Square Contingency function provides a Chi-Square statistic that can be compared against a calculated *critical value*, in order to reject or fail to reject a null hypothesis.
 
-* Chi-Square Statistic < Critical Value: We retain the null hypothesis - the observed results could easily happen under random variation, meaning there isn't enough evidence to prove a true association exists between variables
+* Chi-Square Statistic < Critical Value: We retain the null hypothesis. The observed results could easily happen under random variation, meaning there isn't enough evidence to prove a true association exists between variables
 
-* Chi-Square Statistic ≥ Critical Value: We reject the null hypothesis - the observed results are highly unlikely to have occurred by chance providing strong evidence that an association exists between variables
+* Chi-Square Statistic ≥ Critical Value: We reject the null hypothesis. The observed results are highly unlikely to have occurred by chance providing strong evidence that an association exists between variables
 
 This function also provides a p-value, which can be compared to the chosen significance level (commonly set to 0.05). If the p-value is less than or equal to this significance level, the null hypothesis is rejected.
 
@@ -196,6 +196,7 @@ For our significance level, we'll be using the commonly used value of 0.05 (or 5
 * significance_level: 0.05
 
 <br>
+
 #### Calculate Observed Frequencies & Expected Frequencies
 
 As detailed in the *Concept Overview* section above, the **observed frequencies** come directly from the rates per group in our collected data. To get these frequencies, we'll create our 2x2 matrix needed for the Chi-Square approach, using a method called **`crosstab()`**. 
