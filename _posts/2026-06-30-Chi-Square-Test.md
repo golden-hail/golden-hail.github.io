@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Assessing Campaign Performance Using Chi-Square Test For Independence
+title: Assessing Campaign Performance Using Chi-Square Test Of Independence
 image: "/posts/AB_testing.jpg"
 tags: [AB Testing, Hypothesis Testing, Chi-Square, Python]
 ---
@@ -35,7 +35,7 @@ For the campaign promoting the club, customers were put randomly into three grou
 * The second group received a colorful, high quality, high cost mailer, Mailer 2. 
 * The third group was a control group. They did not receive any mail.
 
-The client knows that customers who were contacted, signed up for the Delivery Club at a far higher rate than the control group, but are now curious as to if there is a significant difference in customer signup rate between the cheap mailer and the expensive mailer. This will allow them to make more informed decisions in the future, such as whether it is worth it to spend the money on higher cost mailers or not.
+The client knows that customers who were contacted signed up for the Delivery Club at a far higher rate than the control group, but are now curious as to if there is a significant difference in customer signup rate between the cheap mailer and the expensive mailer. 
 
 <br>
 
@@ -273,15 +273,15 @@ Based upon the raw observed values from the campaign, we can see that the signup
 
 The Chi-Square test gives us further insight into whether this difference in signup rate was truly due to the quality of the mailer, or just due to chance.
 
-Our calculated p-value of 0.19 is greater than our set significance level of 0.05, meaning that **the difference in signup outcomes between the two mailing groups is not significant.** 
+Our calculated p-value of 0.19 is greater than our set significance level of 0.05, meaning that **the difference in signup outcomes between the two mailing groups is not statistically significant.** 
 
-This conclusion is further supported by our Chi-Square statistic of 1.72 being lower than the calculated critical value of 3.84. In both cases, we **retain the null hypothesis** as there is not enough evidence that the signup rates for Mailer 1 and Mailer 2 were significantly different.
+This conclusion is further supported by our Chi-Square statistic of 1.72 being less than the calculated critical value of 3.84. In both cases, we **retain the null hypothesis** as there is not enough evidence that the signup rates for Mailer 1 and Mailer 2 were significantly different.
 
 ___
 
 # Discussion <a name="discussion"></a>
 
-While Mailer 2 yielded a higher signup rate than Mailer 1 (37.8% vs. 32.8%), the difference was not statistically significant at our 0.05 significance level. The results of the Chi-Square test of independence reveal that we cannot yet conclude whether the more expensive mailer had a true impact on whether a customer signed up.
+While Mailer 2 yielded more membership conversions than Mailer 1 (37.8% vs. 32.8%), the difference was not statistically significant at our 0.05 significance level. The results of the Chi-Square test of independence reveal that we cannot yet conclude whether the more expensive mailer had a true impact on whether a customer signed up.
 
 At first glance, the client might look at the raw percentages and assume the premium quality of Mailer 2 was the driving force behind the higher signup rate. Without this hypothesis test, they may have considered exclusively sending the more expensive mailers for their next promotion, potentially wasting valuable funding.
 

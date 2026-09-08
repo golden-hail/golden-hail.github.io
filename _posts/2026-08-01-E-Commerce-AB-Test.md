@@ -5,7 +5,7 @@ image: "/posts/checkout_UI.jpg"
 tags: [AB Testing, Hypothesis Testing, Z-Test, Shapiro-Wilk, Mann-Whitney U, Python]
 ---
 
-Can a checkout redesign boost conversion rates without lowering average order values? In this case study, we evaluate a 30-day e-commerce A/B test using a triad of statistical hypothesis tests: combining a Two-Sample Z-Test for Proportions, Shapiro-Wilk normality testing, and a Mann-Whitney U Test to deliver a data-backed rollout recommendation.
+Can a checkout redesign boost conversion rates without lowering average order values? In this case study, we evaluate a 30-day e-commerce A/B test using a triad of statistical hypothesis tests; combining a Two-Sample Z-Test for Proportions, Shapiro-Wilk normality testing, and a Mann-Whitney U Test to deliver a data-backed rollout recommendation.
 
 ___
 
@@ -42,7 +42,7 @@ The product and marketing teams logged daily performance metrics including numbe
 
 ### Actions <a name="overview-actions"></a>
 
-To evaluate the performance of the UI redesign, as well as the impact on Average Order Value (AOV), we structured our analysis across three sequential hypothesis tests:
+To evaluate the performance of the UI redesign, as well as the impact on Average Order Value (AOV), this analysis will be conducted across three sequential hypothesis tests:
 
 1. **Primary Metric Evaluation (Conversion Rate):**
    * <u>Objective:</u> Determine whether the new checkout UI drives a statistically significant lift in cart-to-purchase conversion rates.
