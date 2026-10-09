@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>Assessing Campaign Performance Using Chi-Square Test For Independence</title>
+    <title>Assessing Campaign Performance Using Chi-Square Test Of Independence</title>
     <meta name="description" content="Hi, I'm Tonii! A Data Analyst bringing 7 years of defense systems engineering rigor to business applications. Driven by a deep curiosity for how complex systems work, I focus on validating data integrity before using it to drive decisions. My portfolio contains interesting projects I've recently undertaken, with a strong emphasis on business impact. Please visit my Github & LinkedIn pages (or download my Resume) by using the links below!" />
     <link rel="canonical" href="http://localhost:4000/2026/06/30/Chi-Square-Test.html">
     <link rel="alternate" type="application/rss+xml" title="Antonia Iaquinta" href="/feed.xml">
@@ -81,7 +81,7 @@
                         
                     </div>
                     
-                    <h1 class="post-title">Assessing Campaign Performance Using Chi-Square Test For Independence</h1>
+                    <h1 class="post-title">Assessing Campaign Performance Using Chi-Square Test Of Independence</h1>
                     <div class="post-info">
                         <div class="post-time">
                             <span class="page__meta"><i class="ion ion-md-time"></i>
@@ -132,7 +132,7 @@
   <li>The third group was a control group. They did not receive any mail.</li>
 </ul>
 
-<p>The client knows that customers who were contacted, signed up for the Delivery Club at a far higher rate than the control group, but are now curious as to if there is a significant difference in customer signup rate between the cheap mailer and the expensive mailer. This will allow them to make more informed decisions in the future, such as whether it is worth it to spend the money on higher cost mailers or not.</p>
+<p>The client knows that customers who were contacted signed up for the Delivery Club at a far higher rate than the control group, but are now curious as to if there is a significant difference in customer signup rate between the cheap mailer and the expensive mailer.</p>
 
 <p><br /></p>
 
@@ -469,15 +469,15 @@ Below is a 10 row sample of the imported <strong>campaign_data</strong> DataFram
 
 <p>The Chi-Square test gives us further insight into whether this difference in signup rate was truly due to the quality of the mailer, or just due to chance.</p>
 
-<p>Our calculated p-value of 0.19 is greater than our set significance level of 0.05, meaning that <strong>the difference in signup outcomes between the two mailing groups is not significant.</strong></p>
+<p>Our calculated p-value of 0.19 is greater than our set significance level of 0.05, meaning that <strong>the difference in signup outcomes between the two mailing groups is not statistically significant.</strong></p>
 
-<p>This conclusion is further supported by our Chi-Square statistic of 1.72 being lower than the calculated critical value of 3.84. In both cases, we <strong>retain the null hypothesis</strong> as there is not enough evidence that the signup rates for Mailer 1 and Mailer 2 were significantly different.</p>
+<p>This conclusion is further supported by our Chi-Square statistic of 1.72 being less than the calculated critical value of 3.84. In both cases, we <strong>retain the null hypothesis</strong> as there is not enough evidence that the signup rates for Mailer 1 and Mailer 2 were significantly different.</p>
 
 <hr />
 
 <h1 id="discussion-">Discussion <a name="discussion"></a></h1>
 
-<p>While Mailer 2 yielded a higher signup rate than Mailer 1 (37.8% vs. 32.8%), the difference was not statistically significant at our 0.05 significance level. The results of the Chi-Square test of independence reveal that we cannot yet conclude whether the more expensive mailer had a true impact on whether a customer signed up.</p>
+<p>While Mailer 2 yielded more membership conversions than Mailer 1 (37.8% vs. 32.8%), the difference was not statistically significant at our 0.05 significance level. The results of the Chi-Square test of independence reveal that we cannot yet conclude whether the more expensive mailer had a true impact on whether a customer signed up.</p>
 
 <p>At first glance, the client might look at the raw percentages and assume the premium quality of Mailer 2 was the driving force behind the higher signup rate. Without this hypothesis test, they may have considered exclusively sending the more expensive mailers for their next promotion, potentially wasting valuable funding.</p>
 
